@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Yazılar – Berke Erenç</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <style>
+    .page-hero { padding: 5rem 2rem 3rem; max-width: 800px; margin: 0 auto; }
+
+    .blog-grid {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem 5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.15rem;
+    }
+
+    /* FEATURED POST */
+    .post-featured {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: border-color 0.2s, transform 0.2s;
+      margin-bottom: 0.5rem;
+    }
+    .post-featured::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(79,172,254,0.08), rgba(167,139,250,0.08));
+      pointer-events: none;
+    }
+    .post-featured:hover { border-color: rgba(79,172,254,0.35); transform: translateY(-3px); }
+    .feat-label {
+      display: inline-block;
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      background: linear-gradient(135deg, var(--grad1), var(--grad2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: 0.75rem;
+    }
+    .post-featured h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.4rem; font-weight: 700; line-height: 1.3;
+      margin-bottom: 0.6rem;
+    }
+    .post-featured p { color: var(--muted); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1rem; }
+
+    /* REGULAR POSTS */
+    .post-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.4rem 1.6rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .post-card:hover { border-color: rgba(255,255,255,0.15); transform: translateX(4px); }
+
+    .post-left { flex: 1; min-width: 0; }
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.4rem;
+      flex-wrap: wrap;
+    }
+    .post-cat {
+      font-size: 0.71rem; padding: 0.15rem 0.55rem;
+      border-radius: 4px; font-weight: 600;
+    }
+    .post-date { font-size: 0.78rem; color: var(--muted); }
+    .post-read { font-size: 0.78rem; color: var(--muted); }
+
+    .post-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem; font-weight: 600; line-height: 1.4;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+
+    .post-arrow {
+      color: var(--muted); font-size: 1.1rem; flex-shrink: 0;
+      transition: color 0.2s, transform 0.2s;
+    }
+    .post-card:hover .post-arrow { color: var(--accent); transform: translateX(4px); }
+
+    /* EMPTY STATE */
+    .empty-note {
+      background: var(--surface);
+      border: 1px dashed var(--border);
+      border-radius: 12px;
+      padding: 2.5rem;
+      text-align: center;
+      color: var(--muted);
+    }
+    .empty-note p { font-size: 0.9rem; line-height: 1.7; }
+    .empty-note strong { color: var(--text); }
+
+    .coming-badge {
+      display: inline-block;
+      font-size: 0.7rem; font-weight: 600; padding: 0.2rem 0.65rem;
+      border-radius: 100px; background: var(--surface2);
+      border: 1px solid var(--border); color: var(--muted);
+      margin-left: 0.5rem; vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">berke.dev</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Ana Sayfa</a></li>
+    <li><a href="projects.html">Projeler</a></li>
+    <li><a href="blog.html" class="active">Yazılar</a></li>
+    <li><a href="contact.html" class="nav-cta">İletişim</a></li>
+  </ul>
+</nav>
+
+<div class="page">
+  <div class="page-hero">
+    <div class="reveal">
+      <div class="section-label">Yazılar</div>
+      <h1 class="section-title">Öğrendiklerimi <span class="gradient-text">paylaşıyorum</span></h1>
+      <p class="section-desc">
+        Yazılım, yapay zeka, backend mimarisi ve kariyer üzerine düşünceler.
+        Kısaca: kafamda takılanlar.
+      </p>
+    </div>
+  </div>
+
+  <div class="blog-grid">
+
+    <!-- ÖNE ÇIKAN (gerçek içerik gelmeden önce placeholder) -->
+    <div class="post-featured reveal">
+      <div class="feat-label">⭐ Öne Çıkan</div>
+      <h2>TÜBİTAK ile AI Rehabilitasyon Sistemi: Sıfırdan Dağıtıma</h2>
+      <p>
+        Mediapipe ve LSTM kullanarak gerçek zamanlı egzersiz formu değerlendiren bir sistem nasıl inşa edilir?
+        PhysioVision projesinde takım lideri olarak öğrendiklerim, hatalarım ve çıkarımlarım.
+      </p>
+      <div style="display:flex; align-items:center; gap:1rem; flex-wrap:wrap;">
+        <div class="post-meta" style="margin:0;">
+          <span class="post-cat tag tag-blue">Yapay Zeka</span>
+          <span class="post-date">Yakında</span>
+        </div>
+        <span style="font-size:0.82rem; color:var(--muted);">~12 dk okuma</span>
+      </div>
+    </div>
+
+    <!-- YAZI LİSTESİ -->
+    <a href="#" class="post-card reveal">
+      <div class="post-left">
+        <div class="post-meta">
+          <span class="post-cat tag tag-purple">Backend</span>
+          <span class="post-date">Yakında</span>
+          <span class="post-read">· 8 dk</span>
+        </div>
+        <div class="post-title">.NET ile RESTful API Tasarımı: Öğrendiğim 5 Pratik Kural</div>
+      </div>
+      <div class="post-arrow">→</div>
+    </a>
+
+    <a href="#" class="post-card reveal reveal-delay-1">
+      <div class="post-left">
+        <div class="post-meta">
+          <span class="post-cat tag tag-pink">Frontend</span>
+          <span class="post-date">Yakında</span>
+          <span class="post-read">· 6 dk</span>
+        </div>
+        <div class="post-title">Angular ile State Management: RxJS'i Anlama Rehberi</div>
+      </div>
+      <div class="post-arrow">→</div>
+    </a>
+
+    <a href="#" class="post-card reveal reveal-delay-2">
+      <div class="post-left">
+        <div class="post-meta">
+          <span class="post-cat tag tag-green">Kariyer</span>
+          <span class="post-date">Yakında</span>
+          <span class="post-read">· 5 dk</span>
+        </div>
+        <div class="post-title">4 Staj, 4 Farklı Ekip: Profesyonel Yazılım Geliştirmeyi Nasıl Öğrendim</div>
+      </div>
+      <div class="post-arrow">→</div>
+    </a>
+
+    <a href="#" class="post-card reveal reveal-delay-3">
+      <div class="post-left">
+        <div class="post-meta">
+          <span class="post-cat tag tag-blue">Yapay Zeka</span>
+          <span class="post-date">Yakında</span>
+          <span class="post-read">· 10 dk</span>
+        </div>
+        <div class="post-title">LLaMA, Mistral ve GPT'yi Aynı Uygulamada Kullanmak: Multi-LLM Mimarisi</div>
+      </div>
+      <div class="post-arrow">→</div>
+    </a>
+
+    <a href="#" class="post-card reveal">
+      <div class="post-left">
+        <div class="post-meta">
+          <span class="post-cat tag tag-orange">Veritabanı</span>
+          <span class="post-date">Yakında</span>
+          <span class="post-read">· 7 dk</span>
+        </div>
+        <div class="post-title">PostgreSQL Sorgu Optimizasyonu: Yavaş Sorgularla Gerçek Dünya Deneyimim</div>
+      </div>
+      <div class="post-arrow">→</div>
+    </a>
+
+    <!-- NOT -->
+    <div class="empty-note reveal">
+      <p>
+        Bu yazılar henüz yayında değil — üzerinde çalışıyorum. 🚧<br/>
+        <strong>Bildirim almak için</strong> <a href="mailto:berkeerenc@outlook.com" style="color:var(--accent); text-decoration:none;">mail listemde</a> yer alabilirsin.
+      </p>
+    </div>
+
+  </div>
+</div><!-- /page -->
+
+<footer>
+  <p>© 2026 Berke Erenç · <a href="mailto:berkeerenc@outlook.com" style="color:var(--muted); text-decoration:none;">berkeerenc@outlook.com</a></p>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(e => {
+    e.forEach(x => { if(x.isIntersecting) x.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

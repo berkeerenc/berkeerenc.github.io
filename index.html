@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Berke Erenç – Software Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <style>
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 7rem 2rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .blob1{ width:550px;height:550px;background:var(--grad1);top:-120px;left:-120px;animation-delay:0s; }
+    .blob2{ width:450px;height:450px;background:var(--grad2);bottom:-100px;right:-80px;animation-delay:-4s; }
+    .blob3{ width:320px;height:320px;background:var(--grad3);top:55%;left:50%;transform:translate(-50%,-50%);animation-delay:-7s; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(79,172,254,0.08);
+      border: 1px solid rgba(79,172,254,0.25);
+      border-radius: 100px;
+      padding: 0.4rem 1rem;
+      font-size: 0.8rem;
+      color: var(--accent);
+      margin-bottom: 1.75rem;
+      animation: fadeInDown 0.8s ease both;
+    }
+
+    .hero-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(3rem, 9vw, 6.5rem);
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 1rem;
+      animation: fadeInUp 0.8s ease 0.15s both;
+    }
+
+    .hero-role {
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      color: var(--muted);
+      font-family: 'Space Grotesk', sans-serif;
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 0.8s ease 0.3s both;
+    }
+
+    .hero-desc {
+      max-width: 560px;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+      font-size: 0.975rem;
+      animation: fadeInUp 0.8s ease 0.45s both;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeInUp 0.8s ease 0.6s both;
+    }
+
+    .hero-socials {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2.5rem;
+      animation: fadeInUp 0.8s ease 0.75s both;
+    }
+
+    .social-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: color 0.2s, border-color 0.2s, transform 0.2s;
+    }
+    .social-icon:hover {
+      color: var(--text);
+      border-color: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--muted);
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      animation: fadeInUp 1s ease 1.2s both;
+    }
+    .scroll-line {
+      width: 1px; height: 36px;
+      background: linear-gradient(to bottom, var(--muted), transparent);
+      animation: scrollAnim 2s ease-in-out infinite;
+    }
+    @keyframes scrollAnim {
+      0%  { transform: scaleY(0); transform-origin: top; opacity: 1; }
+      50% { transform: scaleY(1); transform-origin: top; opacity: 1; }
+      51% { transform: scaleY(1); transform-origin: bottom; opacity: 1; }
+      100%{ transform: scaleY(0); transform-origin: bottom; opacity: 0; }
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 3rem;
+      align-items: start;
+      margin-top: 2.5rem;
+    }
+    .about-text p { color: var(--muted); line-height: 1.8; margin-bottom: 1rem; font-size: 0.95rem; }
+
+    .tag-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.85rem;
+    }
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .stat-card:hover { border-color: rgba(255,255,255,0.15); transform: translateY(-2px); }
+    .stat-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.9rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--grad1), var(--grad2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .stat-lbl { color: var(--muted); font-size: 0.8rem; margin-top: 0.2rem; }
+
+    /* EXPERIENCE */
+    .exp-list { display: flex; flex-direction: column; gap: 0; margin-top: 2.5rem; }
+    .exp-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0 1.5rem;
+      padding-bottom: 2rem;
+      position: relative;
+    }
+    .exp-timeline {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 4px;
+    }
+    .exp-dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--grad1), var(--grad2));
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .exp-line {
+      width: 1px;
+      flex: 1;
+      background: var(--border);
+      margin-top: 4px;
+    }
+    .exp-item:last-child .exp-line { display: none; }
+    .exp-content { padding-bottom: 0.5rem; }
+    .exp-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.3rem; flex-wrap: wrap; }
+    .exp-company { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 1rem; }
+    .exp-period { font-size: 0.78rem; color: var(--muted); white-space: nowrap; }
+    .exp-role { font-size: 0.85rem; color: var(--accent); margin-bottom: 0.5rem; }
+    .exp-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.7; }
+
+    /* FEATURED PROJECTS */
+    .feat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.15rem;
+      margin-top: 2.5rem;
+    }
+    .proj-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.6rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .proj-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--c1, var(--grad1)), var(--c2, var(--grad2)));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .proj-card:hover { border-color: rgba(255,255,255,0.18); transform: translateY(-4px); }
+    .proj-card:hover::before { opacity: 0.04; }
+    .proj-icon { font-size: 1.6rem; margin-bottom: 1rem; position: relative; }
+    .proj-name { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 1rem; margin-bottom: 0.4rem; position: relative; }
+    .proj-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; margin-bottom: 1.1rem; position: relative; }
+    .proj-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; position: relative; }
+    .proj-tag { padding: 0.18rem 0.55rem; background: var(--surface2); border-radius: 4px; font-size: 0.72rem; color: var(--muted); font-family: 'Space Grotesk', sans-serif; }
+    .proj-badge {
+      position: absolute; top: 1rem; right: 1rem;
+      font-size: 0.68rem; font-weight: 600; padding: 0.2rem 0.55rem;
+      border-radius: 4px; background: rgba(63,185,80,0.15); color: var(--green);
+      border: 1px solid rgba(63,185,80,0.25); text-transform: uppercase; letter-spacing: 0.05em;
+    }
+
+    @media(max-width:700px){
+      .about-grid{ grid-template-columns:1fr; gap:2rem; }
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">berke.dev</a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Ana Sayfa</a></li>
+    <li><a href="projects.html">Projeler</a></li>
+    <li><a href="blog.html">Yazılar</a></li>
+    <li><a href="contact.html" class="nav-cta">İletişim</a></li>
+  </ul>
+</nav>
+
+<div class="page">
+  <!-- HERO -->
+  <section class="hero" style="max-width:none; margin:0; padding-left:2rem; padding-right:2rem;">
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+
+    <div class="hero-badge">
+      <span class="dot-live"></span>
+      Altınyıldız Classics'de stajyer olarak çalışıyorum
+    </div>
+
+    <h1 class="hero-name">
+      <span class="gradient-text">Berke Erenç</span>
+    </h1>
+
+    <p class="hero-role">Junior Backend &amp; Full-Stack Software Developer</p>
+
+    <p class="hero-desc">
+      Akdeniz Üniversitesi Bilgisayar Mühendisliği mezunuyum. Full-stack web geliştirme ve 
+      yapay zeka sistemleri konusunda deneyimliyim. TÜBİTAK destekli AI rehabilitasyon platformunu
+      sıfırdan mimarlandırıp canlıya aldım.
+    </p>
+
+    <div class="hero-btns">
+      <a href="projects.html" class="btn btn-primary">Projelerimi Gör</a>
+      <a href="Berke_CV_Foto.pdf" target="_blank" class="btn btn-secondary">CV İndir ↓</a>
+    </div>
+
+    <div class="hero-socials">
+      <a href="https://github.com/berkeerenc" target="_blank" class="social-icon" title="GitHub">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      </a>
+      <a href="https://linkedin.com/in/berke-erenc" target="_blank" class="social-icon" title="LinkedIn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+      <a href="mailto:berkeerenc@outlook.com" class="social-icon" title="Email">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      </a>
+    </div>
+
+    <div class="scroll-hint">
+      <div class="scroll-line"></div>
+      aşağı kaydır
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <div class="section" id="hakkimda">
+    <div class="reveal">
+      <div class="section-label">Hakkımda</div>
+      <h2 class="section-title">Kim olduğum <span class="gradient-text">ve ne yapıyorum</span></h2>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>
+          Akdeniz Üniversitesi Bilgisayar Mühendisliği mezunuyum. Full-stack web geliştirme, 
+          yapay zeka sistemleri ve backend mimarisi konularında ellerimi kirletmeyi seviyorum.
+        </p>
+        <p>
+          TÜBİTAK 2209-A kapsamında desteklenen <strong style="color:var(--text)">PhysioVision</strong> projesinde 
+          takım liderliği ve backend mimaristi olarak görev aldım — MediaPipe ve LSTM kullanarak 
+          gerçek zamanlı egzersiz değerlendirme sistemi geliştirdik.
+        </p>
+        <p>
+          4 staj deneyimi ve birden fazla prodüksiyon projesinin ardından şu an 
+          Altınyıldız Classics'de .NET ve PostgreSQL ile backend geliştiriyorum. 
+          İngilizcem C1 seviyesinde.
+        </p>
+
+        <div class="tag-row">
+          <span class="tag tag-blue">Python</span>
+          <span class="tag tag-blue">JavaScript</span>
+          <span class="tag tag-blue">TypeScript</span>
+          <span class="tag tag-purple">.NET / C#</span>
+          <span class="tag tag-purple">Java</span>
+          <span class="tag tag-pink">React</span>
+          <span class="tag tag-pink">Angular</span>
+          <span class="tag tag-pink">Next.js</span>
+          <span class="tag tag-green">Node.js</span>
+          <span class="tag tag-green">Flask</span>
+          <span class="tag tag-orange">PostgreSQL</span>
+          <span class="tag tag-orange">MongoDB</span>
+          <span class="tag tag-blue">Docker</span>
+          <span class="tag tag-gray">TensorFlow</span>
+          <span class="tag tag-gray">Redis</span>
+        </div>
+      </div>
+
+      <div class="stat-grid reveal reveal-delay-1">
+        <div class="stat-card">
+          <div class="stat-num">4</div>
+          <div class="stat-lbl">Staj Deneyimi</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">4+</div>
+          <div class="stat-lbl">Proje</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">TÜBİTAK</div>
+          <div class="stat-lbl">Fonlu Proje</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">C1</div>
+          <div class="stat-lbl">İngilizce</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div style="background: rgba(255,255,255,0.015); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <div class="section">
+      <div class="reveal">
+        <div class="section-label">Deneyim</div>
+        <h2 class="section-title">Nereden <span class="gradient-text">geçtim</span></h2>
+      </div>
+
+      <div class="exp-list">
+
+        <div class="exp-item reveal">
+          <div class="exp-timeline">
+            <div class="exp-dot"></div>
+            <div class="exp-line"></div>
+          </div>
+          <div class="exp-content">
+            <div class="exp-header">
+              <span class="exp-company">Altınyıldız Classics</span>
+              <span class="exp-period">Tem 2026 – Devam · İzmir</span>
+            </div>
+            <div class="exp-role">Software Developer Intern</div>
+            <p class="exp-desc">E-ticaret sistemleri için .NET ve PostgreSQL kullanarak backend servisleri geliştiriyorum; RESTful API tasarımı, veri modelleme ve sorgu optimizasyonuna odaklanıyorum. Perakende iş akışlarını hızlandıran dahili otomasyon araçları oluşturuyorum.</p>
+          </div>
+        </div>
+
+        <div class="exp-item reveal reveal-delay-1">
+          <div class="exp-timeline">
+            <div class="exp-dot"></div>
+            <div class="exp-line"></div>
+          </div>
+          <div class="exp-content">
+            <div class="exp-header">
+              <span class="exp-company">VBT Yazılım</span>
+              <span class="exp-period">Haz – Tem 2026 · Remote</span>
+            </div>
+            <div class="exp-role">Software Developer Intern</div>
+            <p class="exp-desc">Kurumsal mimari, bulut teknolojileri, ilişkisel veritabanları, yazılım testi ve agile iş akışlarını kapsayan, mentor eşliğinde yapılandırılmış bir program. Sürüm kontrolü, kod incelemeleri ve prodüksiyon geliştirme pratikleri.</p>
+          </div>
+        </div>
+
+        <div class="exp-item reveal reveal-delay-2">
+          <div class="exp-timeline">
+            <div class="exp-dot"></div>
+            <div class="exp-line"></div>
+          </div>
+          <div class="exp-content">
+            <div class="exp-header">
+              <span class="exp-company">RevloAi</span>
+              <span class="exp-period">Ara 2025 – Şub 2026 · Remote</span>
+            </div>
+            <div class="exp-role">Frontend Developer Intern</div>
+            <p class="exp-desc">Angular ile duyarlı sayfalar ve yeniden kullanılabilir UI bileşenleri geliştirdim; durum yönetimini iyileştirdim, UI/UX iyileştirmelerinde iş birliği yaptım ve daha temiz, bakımı kolay bir frontend kod tabanına katkı sağladım.</p>
+          </div>
+        </div>
+
+        <div class="exp-item reveal reveal-delay-3">
+          <div class="exp-timeline">
+            <div class="exp-dot"></div>
+            <div class="exp-line"></div>
+          </div>
+          <div class="exp-content">
+            <div class="exp-header">
+              <span class="exp-company">Talya Bilişim</span>
+              <span class="exp-period">Haz – Ağu 2025 · Antalya</span>
+            </div>
+            <div class="exp-role">Software Developer Intern</div>
+            <p class="exp-desc">Node.js REST API geliştirme ve Angular frontend özelliklerine katkı sağladım; endpoint'leri test ettim, ilişkisel verilerle çalıştım ve sürüm kontrolü, kod incelemeleri ile agile sprint'leri içeren gerçek iş akışlarını deneyimledim.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURED PROJECTS -->
+  <div class="section">
+    <div class="reveal">
+      <div class="section-label">Öne Çıkan Projeler</div>
+      <h2 class="section-title">En çok konuştuğum <span class="gradient-text">şeyler</span></h2>
+      <p class="section-desc" style="margin-bottom:0;">Geliştirdiğim projelerin bir kısmı — tamamını görmek için Projeler sayfasına git.</p>
+    </div>
+
+    <div class="feat-grid">
+      <a href="projects.html#physiowision" class="proj-card" style="--c1:#4FACFE;--c2:#A78BFA;">
+        <div class="proj-badge">TÜBİTAK</div>
+        <div class="proj-icon">🧠</div>
+        <div class="proj-name">PhysioVision – AI Rehab Platform</div>
+        <div class="proj-desc">MediaPipe pose detection + LSTM ile 13 egzersizde gerçek zamanlı form değerlendirme. %82 doğrulama hassasiyeti. React Native mobil app, Redis, Docker.</div>
+        <div class="proj-tags">
+          <span class="proj-tag">Flask</span>
+          <span class="proj-tag">React</span>
+          <span class="proj-tag">TensorFlow</span>
+          <span class="proj-tag">PostgreSQL</span>
+        </div>
+      </a>
+
+      <a href="projects.html#hotel-builder" class="proj-card" style="--c1:#F093FB;--c2:#4FACFE;">
+        <div class="proj-icon">🏨</div>
+        <div class="proj-name">Hotel Website Builder & Cloner</div>
+        <div class="proj-desc">Şablon tabanlı otel sitesi oluşturma ve Puppeteer/Cheerio ile site klonlama. Güvenli dosya yönetimi ve yapılandırılmış hata yönetimi.</div>
+        <div class="proj-tags">
+          <span class="proj-tag">Node.js</span>
+          <span class="proj-tag">Angular</span>
+          <span class="proj-tag">MongoDB</span>
+          <span class="proj-tag">Puppeteer</span>
+        </div>
+      </a>
+
+      <a href="projects.html#football" class="proj-card" style="--c1:#A78BFA;--c2:#3FB950;">
+        <div class="proj-icon">⚽</div>
+        <div class="proj-name">Football Matchmaking App</div>
+        <div class="proj-desc">JWT auth, SignalR gerçek zamanlı iletişim, derecelendirme sistemi ve Swagger dokümantasyonlu, güvenlik odaklı full-stack uygulama.</div>
+        <div class="proj-tags">
+          <span class="proj-tag">.NET 8</span>
+          <span class="proj-tag">React</span>
+          <span class="proj-tag">PostgreSQL</span>
+          <span class="proj-tag">SignalR</span>
+        </div>
+      </a>
+    </div>
+
+    <div style="text-align:center; margin-top:2rem;">
+      <a href="projects.html" class="btn btn-secondary">Tüm Projeleri Gör →</a>
+    </div>
+  </div>
+
+</div><!-- /page -->
+
+<footer>
+  <p>© 2026 Berke Erenç · <a href="mailto:berkeerenc@outlook.com" style="color:var(--muted); text-decoration:none;">berkeerenc@outlook.com</a></p>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

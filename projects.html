@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projeler – Berke Erenç</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <style>
+    .page-hero {
+      padding: 5rem 2rem 3rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    /* FILTER BAR */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 3rem;
+    }
+    .filter-btn {
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-family: 'Space Grotesk', sans-serif;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      color: var(--text);
+      border-color: rgba(255,255,255,0.25);
+      background: var(--surface2);
+    }
+    .filter-btn.active {
+      background: linear-gradient(135deg, rgba(79,172,254,0.15), rgba(167,139,250,0.15));
+      border-color: rgba(79,172,254,0.35);
+      color: var(--accent);
+    }
+
+    /* PROJECT CARDS GRID */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 3rem;
+    }
+
+    .proj-card-full {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.75rem;
+      transition: border-color 0.2s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .proj-card-full::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--c1, var(--grad1)), var(--c2, var(--grad2)));
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+    .proj-card-full:hover { border-color: rgba(255,255,255,0.18); transform: translateY(-4px); }
+    .proj-card-full:hover::before { opacity: 0.04; }
+
+    .proj-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+    .proj-icon-lg {
+      font-size: 1.8rem;
+    }
+    .proj-actions { display: flex; gap: 0.5rem; }
+    .proj-action-btn {
+      width: 34px; height: 34px;
+      border-radius: 8px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .proj-action-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+
+    .proj-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.05rem; margin-bottom: 0.4rem; }
+    .proj-subtitle { font-size: 0.78rem; color: var(--accent); margin-bottom: 0.6rem; }
+    .proj-description { font-size: 0.875rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.25rem; }
+
+    .proj-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .stack-tag {
+      padding: 0.2rem 0.6rem;
+      background: var(--surface2);
+      border-radius: 4px;
+      font-size: 0.73rem;
+      color: var(--muted);
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .proj-badge-tub {
+      position: absolute; top: 1rem; right: 1rem;
+      font-size: 0.65rem; font-weight: 700; padding: 0.2rem 0.55rem;
+      border-radius: 4px; background: rgba(63,185,80,0.15); color: var(--green);
+      border: 1px solid rgba(63,185,80,0.3); text-transform: uppercase; letter-spacing: 0.06em;
+    }
+
+    /* DIVIDER */
+    .section-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 1rem 0 2.5rem;
+    }
+
+    .category-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .category-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">berke.dev</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Ana Sayfa</a></li>
+    <li><a href="projects.html" class="active">Projeler</a></li>
+    <li><a href="blog.html">Yazılar</a></li>
+    <li><a href="contact.html" class="nav-cta">İletişim</a></li>
+  </ul>
+</nav>
+
+<div class="page">
+  <div class="page-hero">
+    <div class="reveal">
+      <div class="section-label">Projeler</div>
+      <h1 class="section-title">Geliştirdiğim <span class="gradient-text">her şey</span></h1>
+      <p class="section-desc" style="margin-bottom: 2rem;">
+        Prodüksiyon seviyesinde uygulamalar, araştırma projeleri ve denemelerden oluşan portföyüm.
+      </p>
+    </div>
+
+    <!-- FILTER -->
+    <div class="filter-bar reveal">
+      <button class="filter-btn active" data-filter="all">Tümü</button>
+      <button class="filter-btn" data-filter="ai">Yapay Zeka</button>
+      <button class="filter-btn" data-filter="fullstack">Full-Stack</button>
+      <button class="filter-btn" data-filter="backend">Backend</button>
+      <button class="filter-btn" data-filter="frontend">Frontend</button>
+    </div>
+
+    <!-- ANA PROJELER -->
+    <div class="category-title reveal">Öne Çıkan Projeler</div>
+
+    <div class="projects-grid">
+
+      <!-- PhysioVision -->
+      <div id="physiowision" class="proj-card-full reveal" style="--c1:#4FACFE;--c2:#A78BFA;" data-cat="ai fullstack">
+        <div class="proj-badge-tub">TÜBİTAK 2209-A</div>
+        <div class="proj-top">
+          <div class="proj-icon-lg">🧠</div>
+          <div class="proj-actions">
+            <a href="https://github.com/berkeerenc" target="_blank" class="proj-action-btn" title="GitHub">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="proj-title">PhysioVision – AI Rehabilitation Platform</div>
+        <div class="proj-subtitle">Takım Lideri & Backend Mimaristi</div>
+        <p class="proj-description">
+          MediaPipe pose detection ve LSTM egzersiz sınıflandırması kullanarak 13 egzersizde 
+          gerçek zamanlı form değerlendirme sistemi. ~%82 doğrulama hassasiyeti. 
+          Hasta/terapist/admin çok rollü sistem, React Native mobil uygulama, 
+          Redis önbellekleme ve Docker deployment.
+        </p>
+        <div class="proj-stack">
+          <span class="stack-tag">Flask</span>
+          <span class="stack-tag">React</span>
+          <span class="stack-tag">TensorFlow</span>
+          <span class="stack-tag">PostgreSQL</span>
+          <span class="stack-tag">MediaPipe</span>
+          <span class="stack-tag">LSTM</span>
+          <span class="stack-tag">React Native</span>
+          <span class="stack-tag">Redis</span>
+          <span class="stack-tag">Docker</span>
+        </div>
+      </div>
+
+      <!-- Hotel Builder -->
+      <div id="hotel-builder" class="proj-card-full reveal reveal-delay-1" style="--c1:#F093FB;--c2:#4FACFE;" data-cat="fullstack">
+        <div class="proj-top">
+          <div class="proj-icon-lg">🏨</div>
+          <div class="proj-actions">
+            <a href="https://github.com/berkeerenc" target="_blank" class="proj-action-btn" title="GitHub">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="proj-title">Hotel Website Builder & Cloner</div>
+        <div class="proj-subtitle">Full-Stack Geliştirici</div>
+        <p class="proj-description">
+          Şablon tabanlı otel sitesi oluşturma ve Puppeteer/Cheerio ile gelişmiş klonlama özellikli 
+          hibrit platform. Güvenli dosya yönetimi, yapılandırılmış hata yönetimi ve 
+          özelleştirilebilir şablon sistemi.
+        </p>
+        <div class="proj-stack">
+          <span class="stack-tag">Node.js</span>
+          <span class="stack-tag">Angular</span>
+          <span class="stack-tag">MongoDB</span>
+          <span class="stack-tag">Puppeteer</span>
+          <span class="stack-tag">Cheerio</span>
+        </div>
+      </div>
+
+      <!-- AI Chatbot -->
+      <div id="ai-chatbot" class="proj-card-full reveal reveal-delay-2" style="--c1:#A78BFA;--c2:#F093FB;" data-cat="ai backend">
+        <div class="proj-top">
+          <div class="proj-icon-lg">🤖</div>
+          <div class="proj-actions">
+            <a href="https://github.com/berkeerenc" target="_blank" class="proj-action-btn" title="GitHub">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="proj-title">AI-Powered Hotel Chatbot</div>
+        <div class="proj-subtitle">Backend Geliştirici</div>
+        <p class="proj-description">
+          LLaMA, Mistral ve GPT modellerini dinamik model değiştirme ile entegre eden 
+          çok dilli chatbot. Sohbet geçmişi yönetimi ve duyarlı web arayüzü ile 
+          kesintisiz kullanıcı deneyimi.
+        </p>
+        <div class="proj-stack">
+          <span class="stack-tag">Node.js</span>
+          <span class="stack-tag">LLaMA</span>
+          <span class="stack-tag">Mistral</span>
+          <span class="stack-tag">GPT</span>
+          <span class="stack-tag">Multi-LLM</span>
+        </div>
+      </div>
+
+      <!-- Football -->
+      <div id="football" class="proj-card-full reveal reveal-delay-1" style="--c1:#3FB950;--c2:#A78BFA;" data-cat="fullstack backend">
+        <div class="proj-top">
+          <div class="proj-icon-lg">⚽</div>
+          <div class="proj-actions">
+            <a href="https://github.com/berkeerenc" target="_blank" class="proj-action-btn" title="GitHub">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="proj-title">Football Matchmaking Web Application</div>
+        <div class="proj-subtitle">Full-Stack Geliştirici</div>
+        <p class="proj-description">
+          JWT kimlik doğrulama, SignalR gerçek zamanlı iletişim, derecelendirme sistemi 
+          ve Swagger dokümantasyonlu güvenlik odaklı API'lar içeren full-stack uygulama.
+        </p>
+        <div class="proj-stack">
+          <span class="stack-tag">.NET 8</span>
+          <span class="stack-tag">React</span>
+          <span class="stack-tag">PostgreSQL</span>
+          <span class="stack-tag">SignalR</span>
+          <span class="stack-tag">JWT</span>
+          <span class="stack-tag">Swagger</span>
+        </div>
+      </div>
+
+    </div><!-- /projects-grid -->
+
+    <!-- DIGER -->
+    <div class="category-title reveal">Staj & Diğer Çalışmalar</div>
+    <div class="projects-grid">
+
+      <div class="proj-card-full reveal" style="--c1:#F78166;--c2:#4FACFE;" data-cat="backend">
+        <div class="proj-top">
+          <div class="proj-icon-lg">🛒</div>
+        </div>
+        <div class="proj-title">E-Commerce Backend (Altınyıldız)</div>
+        <div class="proj-subtitle">Software Developer Intern · 2026</div>
+        <p class="proj-description">
+          Perakende iş akışları için .NET ve PostgreSQL ile RESTful API tasarımı, 
+          güvenilir veri modelleme ve sorgu optimizasyonu. El emeğini azaltan otomasyon araçları.
+        </p>
+        <div class="proj-stack">
+          <span class="stack-tag">.NET</span>
+          <span class="stack-tag">PostgreSQL</span>
+          <span class="stack-tag">RESTful API</span>
+        </div>
+      </div>
+
+      <div class="proj-card-full reveal reveal-delay-1" style="--c1:#4FACFE;--c2:#3FB950;" data-cat="frontend">
+        <div class="proj-top">
+          <div class="proj-icon-lg">⚡</div>
+        </div>
+        <div class="proj-title">Angular UI Components (RevloAi)</div>
+        <div class="proj-subtitle">Frontend Developer Intern · 2025–2026</div>
+        <p class="proj-description">
+          Yeniden kullanılabilir Angular bileşen kütüphanesi, durum yönetimi iyileştirmeleri 
+          ve UI/UX refinement çalışmaları. Temiz, ölçeklenebilir frontend mimarisi.
+        </p>
+        <div class="proj-stack">
+          <span class="stack-tag">Angular</span>
+          <span class="stack-tag">TypeScript</span>
+          <span class="stack-tag">RxJS</span>
+        </div>
+      </div>
+
+      <div class="proj-card-full reveal reveal-delay-2" style="--c1:#A78BFA;--c2:#F093FB;" data-cat="backend">
+        <div class="proj-top">
+          <div class="proj-icon-lg">🔌</div>
+        </div>
+        <div class="proj-title">Node.js REST API (Talya Bilişim)</div>
+        <div class="proj-subtitle">Software Developer Intern · 2025</div>
+        <p class="proj-description">
+          Profesyonel ekip içinde Node.js REST API geliştirme ve Angular frontend 
+          özellik katkıları. Endpoint testi, ilişkisel veri yönetimi, agile sprint'leri.
+        </p>
+        <div class="proj-stack">
+          <span class="stack-tag">Node.js</span>
+          <span class="stack-tag">Angular</span>
+          <span class="stack-tag">REST API</span>
+          <span class="stack-tag">SQL</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div><!-- /page -->
+
+<footer>
+  <p>© 2026 Berke Erenç · <a href="mailto:berkeerenc@outlook.com" style="color:var(--muted); text-decoration:none;">berkeerenc@outlook.com</a></p>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(e => {
+    e.forEach(x => { if(x.isIntersecting) x.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Filter
+  const btns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.proj-card-full');
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      cards.forEach(c => {
+        const cats = (c.dataset.cat || '').split(' ');
+        c.style.display = (f === 'all' || cats.includes(f)) ? '' : 'none';
+      });
+    });
+  });
+
+  // Anchor scroll
+  if(location.hash) {
+    setTimeout(() => {
+      const el = document.querySelector(location.hash);
+      if(el) el.scrollIntoView({ behavior:'smooth', block:'center' });
+    }, 300);
+  }
+</script>
+</body>
+</html>

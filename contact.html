@@ -4,217 +4,236 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>İletişim – Berke Erenç</title>
+  <meta name="description" content="Berke Erenç ile iletişime geçin. Junior backend developer pozisyonlarına açık, İzmir merkezli.">
+  <meta property="og:title" content="İletişim – Berke Erenç">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://berkeerenc.github.io/contact.html">
+  <link rel="canonical" href="https://berkeerenc.github.io/contact.html">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="shared.css"/>
   <style>
     .contact-page {
-      min-height: 100vh;
+      min-height: calc(100vh - 64px);
       display: flex;
       align-items: center;
-      padding: 5rem 2rem;
+      padding: 4rem 2rem;
     }
-
-    .contact-inner {
-      max-width: 700px;
-      margin: 0 auto;
-      width: 100%;
-    }
+    .contact-inner { max-width: 640px; margin: 0 auto; width: 100%; }
 
     .contact-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 3rem;
+      border-radius: 20px;
+      padding: 2.5rem;
       position: relative;
       overflow: hidden;
-      margin-top: 3rem;
+      margin-top: 2.5rem;
     }
-
     .contact-card::before {
       content: '';
-      position: absolute;
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(79,172,254,0.07), transparent 65%);
-      top: -100px; right: -100px;
-      pointer-events: none;
+      position: absolute; width: 350px; height: 350px;
+      background: radial-gradient(circle, rgba(79,172,254,0.06), transparent 65%);
+      top: -80px; right: -80px; pointer-events: none;
     }
 
-    .avail-banner {
+    .status-banner {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 0.6rem;
-      background: rgba(63,185,80,0.08);
+      background: rgba(63,185,80,0.07);
       border: 1px solid rgba(63,185,80,0.2);
       border-radius: 10px;
-      padding: 0.75rem 1.1rem;
+      padding: 0.85rem 1.1rem;
       margin-bottom: 2rem;
       font-size: 0.875rem;
-      color: var(--green);
     }
+    .status-banner-text { }
+    .status-main { color: var(--green); font-weight: 600; font-size: 0.875rem; }
+    .status-sub { color: var(--muted); font-size: 0.78rem; margin-top: 0.15rem; }
 
     .contact-email {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(1.2rem, 3vw, 1.6rem);
+      font-size: clamp(1.1rem, 3vw, 1.4rem);
       font-weight: 700;
       background: linear-gradient(135deg, var(--grad1), var(--grad2));
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
       text-decoration: none;
       display: inline-block;
-      margin: 1.5rem 0;
+      margin: 1.25rem 0;
       transition: opacity 0.2s;
+      position: relative;
     }
     .contact-email:hover { opacity: 0.8; }
 
     .contact-desc {
       color: var(--muted);
       line-height: 1.75;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       margin-bottom: 2rem;
+      position: relative;
     }
 
-    .socials-grid {
+    .contact-channels {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      grid-template-columns: 1fr 1fr;
       gap: 0.75rem;
+      position: relative;
     }
-
-    .social-card {
+    .channel-card {
       display: flex;
       flex-direction: column;
-      gap: 0.25rem;
+      gap: 0.2rem;
       padding: 1rem 1.1rem;
       background: var(--surface2);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 10px;
       text-decoration: none;
       color: inherit;
       transition: border-color 0.2s, transform 0.2s;
     }
-    .social-card:hover {
-      border-color: rgba(255,255,255,0.2);
-      transform: translateY(-2px);
-    }
-    .social-name { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 0.875rem; }
-    .social-handle { font-size: 0.78rem; color: var(--muted); }
+    .channel-card:hover { border-color: rgba(255,255,255,0.2); transform: translateY(-2px); }
+    .channel-name { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 0.875rem; }
+    .channel-handle { font-size: 0.78rem; color: var(--muted); }
 
-    .divider { height: 1px; background: var(--border); margin: 2rem 0; }
+    .divider { height: 1px; background: var(--border); margin: 2rem 0; position: relative; }
 
-    .info-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
+    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; position: relative; }
     .info-item { font-size: 0.875rem; }
-    .info-label { color: var(--muted); font-size: 0.75rem; margin-bottom: 0.2rem; letter-spacing: 0.05em; text-transform: uppercase; }
-    .info-value { color: var(--text); font-family: 'Space Grotesk', sans-serif; font-weight: 500; }
+    .info-lbl { color: var(--muted); font-size: 0.7rem; margin-bottom: 0.2rem; letter-spacing: 0.06em; text-transform: uppercase; }
+    .info-val { color: var(--text); font-family: 'Space Grotesk', sans-serif; font-weight: 500; }
 
-    @media(max-width:500px) {
+    @media (max-width: 480px) {
       .contact-card { padding: 1.75rem; }
+      .contact-channels { grid-template-columns: 1fr; }
       .info-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-<nav>
-  <a href="index.html" class="nav-logo">berke.dev</a>
-  <ul class="nav-links">
+<a href="#main-content" class="skip-link">İçeriğe geç</a>
+
+<nav aria-label="Ana navigasyon">
+  <a href="index.html" class="nav-logo">Berke Erenç</a>
+  <ul class="nav-links" role="list">
     <li><a href="index.html">Ana Sayfa</a></li>
     <li><a href="projects.html">Projeler</a></li>
-    <li><a href="blog.html">Yazılar</a></li>
-    <li><a href="contact.html" class="active nav-cta">İletişim</a></li>
+    <li><a href="index.html#hakkimda">Hakkımda</a></li>
+    <li><a href="Berke-Erenc-CV.pdf" target="_blank" rel="noopener noreferrer">CV</a></li>
+    <li><a href="contact.html" aria-current="page" class="nav-cta">İletişim</a></li>
   </ul>
+  <button class="nav-hamburger" aria-label="Menüyü aç" aria-expanded="false" aria-controls="mobile-menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
+<div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobil navigasyon">
+  <a href="index.html">Ana Sayfa</a>
+  <a href="projects.html">Projeler</a>
+  <a href="index.html#hakkimda">Hakkımda</a>
+  <a href="Berke-Erenc-CV.pdf" target="_blank" rel="noopener noreferrer">CV</a>
+  <a href="contact.html" aria-current="page" class="mob-cta">İletişim</a>
+</div>
+
+<main id="main-content">
 <div class="page contact-page">
   <div class="contact-inner">
 
     <div class="reveal">
       <div class="section-label">İletişim</div>
-      <h1 class="section-title">Konuşalım <span class="gradient-text">mı?</span></h1>
-      <p style="color:var(--muted); line-height:1.75; font-size:0.95rem; max-width:500px;">
-        Yeni bir proje, iş birliği teklifi ya da sadece merhaba demek için —
-        her türlü mesajına açığım.
+      <h1 class="section-title">Seninle <span class="gradient-text">konuşalım</span></h1>
+      <p class="section-desc" style="max-width:none;">
+        Junior backend ve software developer pozisyonlarına açığım. Pozisyon detayları, teknik ekip yapısı veya görüşme süreci hakkında e-posta ya da LinkedIn üzerinden iletişime geçebilirsiniz.
       </p>
     </div>
 
     <div class="contact-card reveal">
-      <div class="avail-banner">
-        <span class="dot-live"></span>
-        Şu an tam zamanlı iş fırsatlarına açığım
+      <div class="status-banner" role="status">
+        <span class="dot-live" aria-hidden="true"></span>
+        <div class="status-banner-text">
+          <div class="status-main">Junior Backend Pozisyonlarına Açık</div>
+          <div class="status-sub">İzmir · Remote / Hybrid</div>
+        </div>
       </div>
 
-      <div style="font-size:0.82rem; color:var(--muted); margin-bottom:0.3rem;">En hızlı ulaşmak için</div>
-      <a href="mailto:berkeerenc@outlook.com" class="contact-email">
-        berkeerenc@outlook.com
-      </a>
+      <div style="font-size:0.78rem; color:var(--muted); margin-bottom:0.25rem; position:relative;">E-posta</div>
+      <a href="mailto:berkeerenc@outlook.com" class="contact-email">berkeerenc@outlook.com</a>
 
       <p class="contact-desc">
-        Genellikle 24 saat içinde yanıt veriyorum. İngilizce veya Türkçe yazabilirsin.
-        Proje detaylarını, zaman çizelgeni ve bütçeni paylaşırsan çok daha hızlı ilerleyebiliriz.
+        En hızlı e-posta veya LinkedIn üzerinden ulaşabilirsiniz. Freelance projeler için de açığım; ancak önceliğim tam zamanlı bir pozisyon.
       </p>
 
-      <div class="socials-grid">
-        <a href="https://github.com/berkeerenc" target="_blank" class="social-card">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color:var(--muted)"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-          <div class="social-name">GitHub</div>
-          <div class="social-handle">@berkeerenc</div>
+      <div class="contact-channels">
+        <a href="https://github.com/berkeerenc" target="_blank" rel="noopener noreferrer" class="channel-card" aria-label="Berke Erenç GitHub profili">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color:var(--muted)" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <div class="channel-name">GitHub</div>
+          <div class="channel-handle">@berkeerenc</div>
         </a>
 
-        <a href="https://linkedin.com/in/berke-erenc" target="_blank" class="social-card">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color:var(--muted)"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          <div class="social-name">LinkedIn</div>
-          <div class="social-handle">berke-erenc</div>
+        <a href="https://linkedin.com/in/berke-erenc" target="_blank" rel="noopener noreferrer" class="channel-card" aria-label="Berke Erenç LinkedIn profili">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color:var(--muted)" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          <div class="channel-name">LinkedIn</div>
+          <div class="channel-handle">berke-erenc</div>
         </a>
 
-        <a href="tel:+905530022380" class="social-card">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--muted)"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.69A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
-          <div class="social-name">Telefon</div>
-          <div class="social-handle">+90 553 002 2380</div>
-        </a>
-
-        <a href="Berke_CV_Foto.pdf" target="_blank" class="social-card">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--muted)"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-          <div class="social-name">CV</div>
-          <div class="social-handle">PDF olarak indir</div>
+        <a href="Berke-Erenc-CV.pdf" target="_blank" rel="noopener noreferrer" class="channel-card" aria-label="Berke Erenç CV'sini görüntüle">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--muted)" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          <div class="channel-name">CV</div>
+          <div class="channel-handle">PDF olarak görüntüle</div>
         </a>
       </div>
 
-      <div class="divider"></div>
+      <div class="divider" aria-hidden="true"></div>
 
       <div class="info-grid">
         <div class="info-item">
-          <div class="info-label">Konum</div>
-          <div class="info-value">İzmir, Türkiye</div>
+          <div class="info-lbl">Konum</div>
+          <div class="info-val">İzmir, Türkiye</div>
         </div>
         <div class="info-item">
-          <div class="info-label">Durum</div>
-          <div class="info-value" style="color:var(--green);">Müsait ✓</div>
+          <div class="info-lbl">Tercih</div>
+          <div class="info-val">Remote / Hybrid</div>
         </div>
         <div class="info-item">
-          <div class="info-label">Çalışma Tercihi</div>
-          <div class="info-value">Hybrid / Remote</div>
+          <div class="info-lbl">Pozisyon</div>
+          <div class="info-val">Junior Backend Dev</div>
         </div>
         <div class="info-item">
-          <div class="info-label">Diller</div>
-          <div class="info-value">Türkçe, İngilizce</div>
+          <div class="info-lbl">Müsaitlik</div>
+          <div class="info-val" style="color:var(--green);">Açık ✓</div>
         </div>
       </div>
     </div>
 
   </div>
-</div><!-- /page -->
+</div>
+</main>
 
 <footer>
-  <p>© 2026 Berke Erenç · <a href="mailto:berkeerenc@outlook.com" style="color:var(--muted); text-decoration:none;">berkeerenc@outlook.com</a></p>
+  <p>© <span id="footer-year"></span> Berke Erenç ·
+    <a href="mailto:berkeerenc@outlook.com">berkeerenc@outlook.com</a>
+  </p>
 </footer>
 
 <script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+  document.body.classList.add('js-loaded');
   const obs = new IntersectionObserver(e => {
-    e.forEach(x => { if(x.isIntersecting) x.target.classList.add('visible'); });
+    e.forEach(x => { if (x.isIntersecting) x.target.classList.add('visible'); });
   }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  const btn = document.querySelector('.nav-hamburger');
+  const menu = document.getElementById('mobile-menu');
+  const nav = document.querySelector('nav');
+  function closeMenu() { menu.classList.remove('open'); btn.setAttribute('aria-expanded','false'); btn.setAttribute('aria-label','Menüyü aç'); }
+  function openMenu()  { menu.classList.add('open');    btn.setAttribute('aria-expanded','true');  btn.setAttribute('aria-label','Menüyü kapat'); }
+  btn.addEventListener('click', () => menu.classList.contains('open') ? closeMenu() : openMenu());
+  document.addEventListener('click', e => { if (!nav.contains(e.target) && !menu.contains(e.target)) closeMenu(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 </script>
 </body>
 </html>

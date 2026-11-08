@@ -9,6 +9,7 @@
   <meta property="og:title" content="Berke Erenç – Junior Backend Developer">
   <meta property="og:description" content="Berke Erenç'in backend, full-stack ve yapay zekâ projelerini içeren yazılım geliştirici portföyü. .NET, Node.js, PostgreSQL ve Angular ile geliştirme.">
   <meta property="og:type" content="website">
+  <meta property="og:locale" content="tr_TR">
   <meta property="og:url" content="https://berkeerenc.github.io/">
   <meta property="og:image" content="https://berkeerenc.github.io/og-image.svg">
   <meta name="twitter:card" content="summary_large_image">
@@ -16,11 +17,14 @@
   <meta name="twitter:description" content="Berke Erenç'in backend, full-stack ve yapay zekâ projelerini içeren yazılım geliştirici portföyü. .NET, Node.js, PostgreSQL ve Angular ile geliştirme.">
   <meta name="twitter:image" content="https://berkeerenc.github.io/og-image.svg">
   <link rel="canonical" href="https://berkeerenc.github.io/">
+  <link rel="alternate" hreflang="tr" href="https://berkeerenc.github.io/">
+  <link rel="alternate" hreflang="en" href="https://berkeerenc.github.io/en/">
+  <link rel="alternate" hreflang="x-default" href="https://berkeerenc.github.io/en/">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Martian+Mono:wdth,wght@75..112.5,100..800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="shared.css">
+  <link rel="stylesheet" href="shared.css?v=326383f9">
   <style>
     /* ---------- HERO ---------- */
     .hero { padding-top: clamp(1rem, 4vw, 3rem); }
@@ -29,7 +33,7 @@
 
     .name {
       font-family: var(--mono);
-      font-size: clamp(3.4rem, 15.5vw, 13.5rem);
+      font-size: clamp(3.4rem, 22vw, 13.5rem);
       line-height: .92;
       letter-spacing: -0.045em;
       color: var(--ink);
@@ -157,6 +161,7 @@
     }
     .proj.wide h3 { font-size: clamp(1.75rem, 4.5vw, 3.25rem); max-width: 20ch; }
     .proj p { max-width: 62ch; }
+    .proj .proj-role { font: 500 .875rem var(--mono); color: var(--cyan); }
     .badge {
       align-self: flex-start;
       font: 600 .75rem/1 var(--mono);
@@ -180,6 +185,7 @@
 
     @media (max-width: 860px) {
       .hero-grid, .about-grid { grid-template-columns: 1fr; }
+      .json { white-space: pre; font-size: .75rem; }
       .projects-grid, .proj.wide { grid-template-columns: 1fr; }
     }
   </style>
@@ -199,6 +205,7 @@
         <li><a class="item" href="blog.html" data-key="y"><span class="key">Y</span>azılar</a></li>
       </ul>
     </nav>
+    <div class="lang-switch" role="group" aria-label="Dil"><a href="index.html" hreflang="tr" lang="tr" aria-current="true">TR</a><a href="en/index.html" hreflang="en" lang="en">EN</a></div>
     <span class="menubar-clock" data-clock aria-hidden="true"></span>
   </header>
 
@@ -308,6 +315,7 @@
             <div class="wide-l">
               <span class="badge">TÜBİTAK 2209-A destekli</span>
               <h3>PhysioVision: yapay zekâ destekli fizyoterapi platformu</h3>
+              <p class="proj-role">Takım lideri ve backend mimarı</p>
             </div>
             <div class="wide-r">
             <p>MediaPipe ile iskelet takibi ve LSTM ile egzersiz sınıflandırması yapan gerçek zamanlı değerlendirme sistemi. Hasta, terapist ve admin rolleri; React Native mobil uygulama ve Docker ile deployment.</p>
@@ -366,7 +374,7 @@
     <button type="button" class="hide-sm" onclick="location.href='projects.html'"><kbd>P</kbd>Projeler</button>
     <button type="button" class="hide-sm" onclick="window.open('Berke-Erenc-CV.pdf','_blank','noopener')"><kbd>C</kbd>CV</button>
     <button type="button" class="hide-sm" onclick="location.href='contact.html'"><kbd>İ</kbd>İletişim</button>
-    <span class="status-right"><span class="status-dot" aria-hidden="true"></span>Junior backend pozisyonlarına açık</span>
+    <span class="status-right"><span class="status-dot" aria-hidden="true"></span><span class="hide-sm">Junior backend pozisyonlarına açık</span><span class="show-sm">İşe açık</span></span>
   </footer>
 
   <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Komut satırı" aria-hidden="true">
@@ -382,6 +390,6 @@
     </div>
   </div>
 
-  <script src="shared.js" defer></script>
+  <script src="shared.js?v=90786019" defer></script>
 </body>
 </html>

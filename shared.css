@@ -256,8 +256,12 @@ section + section { margin-top: clamp(4rem, 10vw, 7.5rem); }
 @keyframes blink { 50% { opacity: 0; } }
 
 /* ===== MOBİL ===== */
+.show-sm { display: none; }
 @media (max-width: 720px) {
   .menubar-clock { display: none; }
+  .menubar li:first-child { display: none; }
+  .menubar a.item { padding: 0 .7rem; }
+  .statusbar .show-sm { display: inline; }
   .statusbar .hide-sm { display: none; }
   .win { box-shadow: 7px 7px 0 var(--shadow); }
   body { font-size: 1rem; }

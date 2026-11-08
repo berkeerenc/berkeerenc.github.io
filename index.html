@@ -29,7 +29,7 @@
 
     .name {
       font-family: var(--mono);
-      font-size: clamp(3.4rem, 15.5vw, 13.5rem);
+      font-size: clamp(3.4rem, 22vw, 13.5rem);
       line-height: .92;
       letter-spacing: -0.045em;
       color: var(--ink);
@@ -157,6 +157,7 @@
     }
     .proj.wide h3 { font-size: clamp(1.75rem, 4.5vw, 3.25rem); max-width: 20ch; }
     .proj p { max-width: 62ch; }
+    .proj .proj-role { font: 500 .875rem var(--mono); color: var(--cyan); }
     .badge {
       align-self: flex-start;
       font: 600 .75rem/1 var(--mono);
@@ -180,6 +181,7 @@
 
     @media (max-width: 860px) {
       .hero-grid, .about-grid { grid-template-columns: 1fr; }
+      .json { white-space: pre; font-size: .75rem; }
       .projects-grid, .proj.wide { grid-template-columns: 1fr; }
     }
   </style>
@@ -308,6 +310,7 @@
             <div class="wide-l">
               <span class="badge">TÜBİTAK 2209-A destekli</span>
               <h3>PhysioVision: yapay zekâ destekli fizyoterapi platformu</h3>
+              <p class="proj-role">Takım lideri ve backend mimarı</p>
             </div>
             <div class="wide-r">
             <p>MediaPipe ile iskelet takibi ve LSTM ile egzersiz sınıflandırması yapan gerçek zamanlı değerlendirme sistemi. Hasta, terapist ve admin rolleri; React Native mobil uygulama ve Docker ile deployment.</p>
@@ -366,7 +369,7 @@
     <button type="button" class="hide-sm" onclick="location.href='projects.html'"><kbd>P</kbd>Projeler</button>
     <button type="button" class="hide-sm" onclick="window.open('Berke-Erenc-CV.pdf','_blank','noopener')"><kbd>C</kbd>CV</button>
     <button type="button" class="hide-sm" onclick="location.href='contact.html'"><kbd>İ</kbd>İletişim</button>
-    <span class="status-right"><span class="status-dot" aria-hidden="true"></span>Junior backend pozisyonlarına açık</span>
+    <span class="status-right"><span class="status-dot" aria-hidden="true"></span><span class="hide-sm">Junior backend pozisyonlarına açık</span><span class="show-sm">İşe açık</span></span>
   </footer>
 
   <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Komut satırı" aria-hidden="true">

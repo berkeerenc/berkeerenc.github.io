@@ -1,109 +1,104 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Yazılar – Berke Erenç</title>
-  <meta name="description" content="Berke Erenç'in teknik proje notları ve geliştirme deneyimleri. Yakında yayında.">
+  <meta name="description" content="Berke Erenç'in teknik notları ve proje yazıları. Yakında.">
+  <meta name="theme-color" content="#1B2FD8">
+  <meta property="og:title" content="Yazılar – Berke Erenç">
+  <meta property="og:description" content="Berke Erenç'in teknik notları ve proje yazıları. Yakında.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://berkeerenc.github.io/blog.html">
+  <meta property="og:image" content="https://berkeerenc.github.io/og-image.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Yazılar – Berke Erenç">
+  <meta name="twitter:description" content="Berke Erenç'in teknik notları ve proje yazıları. Yakında.">
+  <meta name="twitter:image" content="https://berkeerenc.github.io/og-image.svg">
   <link rel="canonical" href="https://berkeerenc.github.io/blog.html">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="shared.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Martian+Mono:wdth,wght@75..112.5,100..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
   <style>
-    .coming-page {
-      min-height: calc(100vh - 64px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 4rem 2rem;
-      text-align: center;
+    .empty { max-width: 760px; margin: clamp(2rem, 8vw, 5rem) auto 0; }
+    .empty pre {
+      font: 400 clamp(.875rem, 1.5vw, 1rem)/1.9 var(--mono);
+      white-space: pre-wrap;
+      margin-bottom: 2rem;
     }
-    .coming-inner { max-width: 480px; }
-    .coming-icon {
-      font-size: 3rem;
-      margin-bottom: 1.5rem;
-      opacity: 0.6;
-    }
-    .coming-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.75rem;
-      font-weight: 700;
+    .empty .prompt { color: var(--cyan); }
+    .empty .dim { color: var(--muted); }
+    .empty h1 {
+      font-family: var(--mono); font-weight: 800;
+      font-size: clamp(2.25rem, 7vw, 4.5rem);
+      line-height: 1; letter-spacing: -0.04em;
+      font-variation-settings: "wdth" 112.5;
       margin-bottom: 1rem;
     }
-    .coming-desc { color: var(--muted); line-height: 1.75; font-size: 0.95rem; margin-bottom: 2rem; }
-    .coming-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      color: var(--accent);
-      text-decoration: none;
-      font-size: 0.875rem;
-      border-bottom: 1px solid rgba(79,172,254,0.3);
-      padding-bottom: 1px;
-      transition: border-color 0.2s;
-    }
-    .coming-link:hover { border-color: var(--accent); }
+    .empty p { max-width: 52ch; margin-bottom: 2rem; }
   </style>
 </head>
 <body>
-<a href="#main-content" class="skip-link">İçeriğe geç</a>
+  <a class="skip-link" href="#main-content">İçeriğe geç</a>
 
-<nav aria-label="Ana navigasyon">
-  <a href="index.html" class="nav-logo">Berke Erenç</a>
-  <ul class="nav-links" role="list">
-    <li><a href="index.html">Ana Sayfa</a></li>
-    <li><a href="projects.html">Projeler</a></li>
-    <li><a href="index.html#hakkimda">Hakkımda</a></li>
-    <li><a href="Berke-Erenc-CV.pdf" target="_blank" rel="noopener noreferrer">CV</a></li>
-    <li><a href="contact.html" class="nav-cta">İletişim</a></li>
-  </ul>
-  <button class="nav-hamburger" aria-label="Menüyü aç" aria-expanded="false" aria-controls="mobile-menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
+  <header class="menubar">
+    <a class="menubar-logo" href="index.html" aria-label="Berke Erenç, ana sayfa">berke.sh</a>
+    <nav aria-label="Ana menü">
+      <ul>
+        <li><a class="item" href="index.html" data-key="a"><span class="key">A</span>na sayfa</a></li>
+        <li><a class="item" href="projects.html" data-key="p"><span class="key">P</span>rojeler</a></li>
+        <li><a class="item" href="index.html#hakkimda" data-key="h"><span class="key">H</span>akkımda</a></li>
+        <li><a class="item" href="Berke-Erenc-CV.pdf" data-key="c" target="_blank" rel="noopener"><span class="key">C</span>V</a></li>
+        <li><a class="item" href="contact.html" data-key="i"><span class="key">İ</span>letişim</a></li>
+        <li><a class="item" href="blog.html" data-key="y" aria-current="page"><span class="key">Y</span>azılar</a></li>
+      </ul>
+    </nav>
+    <span class="menubar-clock" data-clock aria-hidden="true"></span>
+  </header>
 
-<div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobil navigasyon">
-  <a href="index.html">Ana Sayfa</a>
-  <a href="projects.html">Projeler</a>
-  <a href="index.html#hakkimda">Hakkımda</a>
-  <a href="Berke-Erenc-CV.pdf" target="_blank" rel="noopener noreferrer">CV</a>
-  <a href="contact.html" class="mob-cta">İletişim</a>
-</div>
+  <main id="main-content">
+    <div class="wrap">
+      <section class="empty win" aria-labelledby="page-title">
+        <span class="win-close" aria-hidden="true">[■]</span>
+        <span class="win-title">yazilar/</span>
+<pre><span class="prompt">~$</span> ls yazilar/
+<span class="dim">toplam 0</span>
+<span class="prompt">~$</span> <span class="caret" aria-hidden="true"></span></pre>
+        <h1 id="page-title">Yazılar yakında</h1>
+        <p>Proje notlarımı ve geliştirme sürecinde öğrendiklerimi burada paylaşacağım. O zamana kadar projelere göz atabilirsin.</p>
+        <a class="btn primary" href="projects.html"><kbd>P</kbd>Projelere git</a>
+      </section>
 
-<main id="main-content">
-<div class="page coming-page">
-  <div class="coming-inner">
-    <div class="coming-icon" aria-hidden="true">📝</div>
-    <h1 class="coming-title">Yazılar <span class="gradient-text">yakında</span></h1>
-    <p class="coming-desc">
-      Teknik proje notlarımı ve geliştirme süreçlerinde öğrendiklerimi yakında burada paylaşacağım.
-    </p>
-    <a href="projects.html" class="coming-link">
-      Projelerime bakabilirsin →
-    </a>
+      <footer class="site-footer">
+        <span>© <span data-year>2026</span> Berke Erenç</span>
+        <a href="mailto:berkeerenc@outlook.com">berkeerenc@outlook.com</a>
+      </footer>
+    </div>
+  </main>
+
+  <footer class="statusbar" aria-label="Kısayollar">
+    <button type="button" data-open-palette><kbd>/</kbd>Komut</button>
+    <button type="button" class="hide-sm" onclick="location.href='projects.html'"><kbd>P</kbd>Projeler</button>
+    <button type="button" class="hide-sm" onclick="window.open('Berke-Erenc-CV.pdf','_blank','noopener')"><kbd>C</kbd>CV</button>
+    <button type="button" class="hide-sm" onclick="location.href='contact.html'"><kbd>İ</kbd>İletişim</button>
+    <span class="status-right"><span class="status-dot" aria-hidden="true"></span>Junior backend pozisyonlarına açık</span>
+  </footer>
+
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Komut satırı" aria-hidden="true">
+    <div class="win">
+      <span class="win-close" aria-hidden="true">[■]</span>
+      <span class="win-title">berke.sh</span>
+      <div class="palette-log" aria-live="polite"></div>
+      <form class="palette-form" autocomplete="off">
+        <label for="palette-input">$</label>
+        <input id="palette-input" type="text" spellcheck="false" placeholder="yardim yaz, Enter'a bas">
+      </form>
+      <p class="palette-hint">Esc ile kapat. Sayfada harf kısayolları da çalışır: P, H, C, İ.</p>
+    </div>
   </div>
-</div>
-</main>
 
-<footer>
-  <p>© <span id="footer-year"></span> Berke Erenç ·
-    <a href="mailto:berkeerenc@outlook.com">berkeerenc@outlook.com</a>
-  </p>
-</footer>
-
-<script>
-  document.getElementById('footer-year').textContent = new Date().getFullYear();
-  const btn = document.querySelector('.nav-hamburger');
-  const menu = document.getElementById('mobile-menu');
-  const nav = document.querySelector('nav');
-  function closeMenu() { menu.classList.remove('open'); btn.setAttribute('aria-expanded','false'); btn.setAttribute('aria-label','Menüyü aç'); }
-  function openMenu()  { menu.classList.add('open');    btn.setAttribute('aria-expanded','true');  btn.setAttribute('aria-label','Menüyü kapat'); }
-  btn.addEventListener('click', () => menu.classList.contains('open') ? closeMenu() : openMenu());
-  document.addEventListener('click', e => { if (!nav.contains(e.target) && !menu.contains(e.target)) closeMenu(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
-  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
-</script>
+  <script src="shared.js" defer></script>
 </body>
 </html>

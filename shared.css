@@ -281,3 +281,46 @@ section + section { margin-top: clamp(4rem, 10vw, 7.5rem); }
   .ticker-track { animation: none; }
   .caret { animation: none; }
 }
+
+/* ===== AÇILIŞ: BOOT SEKANSI ===== */
+/* JS çalışmadan önce sitenin bir anlığına görünmesini engeller */
+html.booting body { overflow: hidden; }
+html.booting body::before {
+  content: ""; position: fixed; inset: 0; z-index: 999;
+  background: var(--bar-ink);
+}
+.boot {
+  position: fixed; inset: 0; z-index: 1000;
+  display: flex; flex-direction: column; justify-content: flex-start;
+  padding: clamp(1.5rem, 5vw, 3.5rem);
+  background: var(--bar-ink); color: var(--muted);
+  font: 400 clamp(.75rem, 1.5vw, .9375rem)/1.75 var(--mono);
+  cursor: pointer;
+  transform-origin: 50% 50%;
+}
+.boot-head { display: flex; justify-content: space-between; gap: 1rem; color: var(--ink); margin-bottom: 1.75rem; }
+.boot-head b { color: var(--yellow); font-weight: 800; }
+.boot-lines { list-style: none; max-width: 86ch; }
+.boot-lines li { white-space: pre-wrap; }
+.boot-lines .ok { color: #59E07A; }
+.boot-lines .hl { color: var(--cyan); }
+.boot-bar {
+  display: inline-block; width: min(22ch, 40vw); height: .8em; vertical-align: -0.05em;
+  border: 2px solid var(--muted); margin-left: .5rem; position: relative;
+}
+.boot-bar i { position: absolute; inset: 1px; right: auto; width: 0; background: var(--yellow); transition: width 1.3s steps(20); }
+.boot-skip {
+  margin-top: auto; align-self: flex-end;
+  font-size: .8125rem; color: var(--bar-ink); background: var(--bar);
+  padding: .45rem .7rem; animation: blink 1.6s steps(1) infinite;
+}
+/* kapanış: tüplü ekran gibi tek çizgiye söner */
+.boot.off { animation: crt-off .42s cubic-bezier(.7, 0, .3, 1) forwards; }
+@keyframes crt-off {
+  0%   { transform: scale(1, 1); filter: brightness(1); }
+  55%  { transform: scale(1, .006); filter: brightness(3); background: var(--ink); }
+  100% { transform: scale(0, .006); filter: brightness(4); background: var(--ink); opacity: .2; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .boot { display: none; }
+}

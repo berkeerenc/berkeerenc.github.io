@@ -1,577 +1,387 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Berke Erenç – Junior Backend Developer</title>
   <meta name="description" content="Berke Erenç'in backend, full-stack ve yapay zekâ projelerini içeren yazılım geliştirici portföyü. .NET, Node.js, PostgreSQL ve Angular ile geliştirme.">
+  <meta name="theme-color" content="#1B2FD8">
   <meta property="og:title" content="Berke Erenç – Junior Backend Developer">
-  <meta property="og:description" content=".NET, Node.js, PostgreSQL ve full-stack uygulama projeleri.">
+  <meta property="og:description" content="Berke Erenç'in backend, full-stack ve yapay zekâ projelerini içeren yazılım geliştirici portföyü. .NET, Node.js, PostgreSQL ve Angular ile geliştirme.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://berkeerenc.github.io/">
   <meta property="og:image" content="https://berkeerenc.github.io/og-image.svg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Berke Erenç – Junior Backend Developer">
-  <meta name="twitter:description" content=".NET, Node.js, PostgreSQL ve full-stack uygulama projeleri.">
+  <meta name="twitter:description" content="Berke Erenç'in backend, full-stack ve yapay zekâ projelerini içeren yazılım geliştirici portföyü. .NET, Node.js, PostgreSQL ve Angular ile geliştirme.">
   <meta name="twitter:image" content="https://berkeerenc.github.io/og-image.svg">
   <link rel="canonical" href="https://berkeerenc.github.io/">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="shared.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Martian+Mono:wdth,wght@75..112.5,100..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
   <style>
-    /* HERO */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 7rem 2rem 5rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .blob1 { width:550px;height:550px;background:var(--grad1);top:-120px;left:-120px;animation-delay:0s; }
-    .blob2 { width:450px;height:450px;background:var(--grad2);bottom:-100px;right:-80px;animation-delay:-4s; }
-    .blob3 { width:320px;height:320px;background:var(--grad3);top:55%;left:50%;transform:translate(-50%,-50%);animation-delay:-7s; }
+    /* ---------- HERO ---------- */
+    .hero { padding-top: clamp(1rem, 4vw, 3rem); }
+    .hero .cmd { font-size: clamp(.875rem, 1.6vw, 1rem); margin-bottom: clamp(1rem, 3vw, 2rem); }
+    .hero .cmd .typed { color: var(--ink); }
 
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(63,185,80,0.08);
-      border: 1px solid rgba(63,185,80,0.25);
-      border-radius: 100px;
-      padding: 0.4rem 1rem;
-      font-size: 0.8rem;
-      color: var(--green);
-      margin-bottom: 1.75rem;
+    .name {
+      font-family: var(--mono);
+      font-size: clamp(3.4rem, 15.5vw, 13.5rem);
+      line-height: .92;
+      letter-spacing: -0.045em;
+      color: var(--ink);
+      margin-left: -0.04em;
+      cursor: default;
+      user-select: none;
     }
-    .hero-location {
-      display: block;
-      font-size: 0.75rem;
-      color: var(--muted);
-      margin-top: 0.4rem;
+    .name .ch {
+      display: inline-block;
+      font-variation-settings: "wdth" var(--w, 100), "wght" var(--wg, 800);
     }
-    .hero-name {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(3rem, 9vw, 6.5rem);
-      font-weight: 700;
-      line-height: 1;
-      margin-bottom: 0.75rem;
+    .name .sp { display: block; height: 0; }
+    .name:not(.in) .ch {
+      opacity: 0;
+      transform: translateY(.18em);
+      font-variation-settings: "wdth" 75, "wght" 200;
     }
-    .hero-role-main {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(1.1rem, 2.8vw, 1.5rem);
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 0.3rem;
+    .name.in .ch {
+      transition:
+        opacity .45s ease calc(var(--i) * 55ms),
+        transform .7s cubic-bezier(.2, .9, .2, 1) calc(var(--i) * 55ms),
+        font-variation-settings 1s cubic-bezier(.2, .9, .2, 1) calc(var(--i) * 55ms);
     }
-    .hero-role-sub {
-      font-size: clamp(0.875rem, 2vw, 1rem);
-      color: var(--muted);
-      font-family: 'Space Grotesk', sans-serif;
-      margin-bottom: 1.75rem;
-    }
-    .hero-desc {
-      max-width: 540px;
-      color: var(--muted);
-      line-height: 1.75;
-      margin-bottom: 2.5rem;
-      font-size: 0.95rem;
-    }
-    .hero-btns {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .hero-socials {
-      display: flex;
-      gap: 0.75rem;
-      margin-top: 2.5rem;
-    }
-    .social-icon {
-      width: 40px; height: 40px;
-      border-radius: 10px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s, border-color 0.2s, transform 0.2s;
-    }
-    .social-icon:hover { color: var(--text); border-color: rgba(255,255,255,0.2); transform: translateY(-2px); }
-    .scroll-hint {
-      position: absolute;
-      bottom: 2rem; left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.4rem;
-      color: var(--muted);
-      font-size: 0.72rem;
-      letter-spacing: 0.05em;
-    }
-    .scroll-line {
-      width: 1px; height: 36px;
-      background: linear-gradient(to bottom, var(--muted), transparent);
-      animation: scrollAnim 2s ease-in-out infinite;
-    }
-    @keyframes scrollAnim {
-      0%  { transform:scaleY(0);transform-origin:top;opacity:1; }
-      50% { transform:scaleY(1);transform-origin:top;opacity:1; }
-      51% { transform:scaleY(1);transform-origin:bottom;opacity:1; }
-      100%{ transform:scaleY(0);transform-origin:bottom;opacity:0; }
-    }
+    .name.settled .ch { transition: font-variation-settings .35s cubic-bezier(.2, .9, .3, 1); }
+    /* ikinci satır sarı: soyadı terminal vurgusu gibi */
+    .name .ch.last { color: var(--yellow); }
 
-    /* ABOUT */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: clamp(1.5rem, 5vw, 4rem);
+      align-items: end;
+      margin-top: clamp(2rem, 5vw, 3.5rem);
+    }
+    .hero-lede { font-size: clamp(1.0625rem, 1.9vw, 1.3125rem); line-height: 1.55; max-width: 44ch; }
+
+    .facts {
+      font: 500 .875rem/1.5 var(--mono);
+      border-left: 4px double var(--ink);
+      padding-left: 1.25rem;
+      display: grid; grid-template-columns: auto 1fr; gap: .4rem 1rem;
+    }
+    .facts dt { color: var(--muted); }
+    .facts dd { color: var(--ink); }
+    .facts dd.on { color: var(--cyan); }
+
+    .actions { display: flex; flex-wrap: wrap; gap: 1rem 1.25rem; margin-top: clamp(2rem, 5vw, 3rem); }
+    .actions button.btn { border: 0; cursor: pointer; background: transparent; color: var(--ink); box-shadow: inset 0 0 0 2px var(--ink); }
+    .actions button.btn kbd { color: var(--yellow); }
+    .actions button.btn:hover { box-shadow: inset 0 0 0 2px var(--yellow); transform: none; }
+
+    /* ---------- HAKKIMDA ---------- */
     .about-grid {
       display: grid;
-      grid-template-columns: 3fr 2fr;
-      gap: 3rem;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+      gap: clamp(2.5rem, 6vw, 5rem);
       align-items: start;
-      margin-top: 2.5rem;
     }
-    .about-text p { color: var(--muted); line-height: 1.8; margin-bottom: 1rem; font-size: 0.95rem; }
+    .json {
+      font: 400 clamp(.75rem, 1.1vw, .875rem)/1.85 var(--mono);
+      white-space: pre-wrap;
+      overflow-x: auto;
+    }
+    .json .k { color: var(--cyan); }
+    .json .s { color: var(--yellow); }
+    .json .p { color: var(--muted); }
 
-    /* SKILL CATEGORIES */
-    .skill-cats { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.75rem; }
-    .skill-cat-row { display: flex; align-items: baseline; gap: 0.75rem; flex-wrap: wrap; }
-    .skill-cat-label {
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--muted);
-      min-width: 80px;
-      flex-shrink: 0;
-    }
-    .skill-cat-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-
-    /* COMPETENCY CARDS */
-    .comp-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.85rem;
-    }
-    .comp-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.1rem 1.25rem;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .comp-card:hover { border-color: rgba(255,255,255,0.15); transform: translateY(-2px); }
-    .comp-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.875rem;
-      font-weight: 600;
-      margin-bottom: 0.3rem;
-    }
-    .comp-sub { color: var(--muted); font-size: 0.75rem; line-height: 1.5; }
-
-    /* EXPERIENCE */
-    .exp-list { display: flex; flex-direction: column; margin-top: 2.5rem; }
-    .exp-item {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 0 1.5rem;
-      padding-bottom: 2rem;
-    }
-    .exp-timeline { display: flex; flex-direction: column; align-items: center; padding-top: 4px; }
-    .exp-dot {
-      width: 12px; height: 12px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--grad1), var(--grad2));
-      flex-shrink: 0; z-index: 1;
-    }
-    .exp-line { width: 1px; flex: 1; background: var(--border); margin-top: 4px; }
-    .exp-item:last-child .exp-line { display: none; }
-    .exp-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.3rem; flex-wrap: wrap; }
-    .exp-company { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 1rem; }
-    .exp-period { font-size: 0.78rem; color: var(--muted); white-space: nowrap; }
-    .exp-role { font-size: 0.85rem; color: var(--accent); margin-bottom: 0.5rem; }
-    .exp-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.7; }
-
-    /* FEATURED PROJECTS */
-    .feat-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.15rem;
-      margin-top: 2.5rem;
-    }
-    .proj-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.6rem;
+    /* ---------- DENEYİM: git log ---------- */
+    .gitlog { list-style: none; position: relative; max-width: 900px; }
+    .gitlog li {
       position: relative;
-      overflow: hidden;
-      transition: border-color 0.2s, transform 0.2s;
-      text-decoration: none;
-      color: inherit;
-      display: block;
+      display: grid;
+      grid-template-columns: 2.25rem minmax(0, 1fr);
+      padding-bottom: clamp(2rem, 4vw, 2.75rem);
     }
-    .proj-card::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, var(--c1, var(--grad1)), var(--c2, var(--grad2)));
-      opacity: 0;
-      transition: opacity 0.3s;
-      pointer-events: none;
+    .gitlog li::before {
+      content: "";
+      position: absolute; left: calc(1.125rem - 2px); top: .5rem; bottom: -0.25rem;
+      width: 4px; background: var(--cyan);
     }
-    .proj-card:hover { border-color: rgba(255,255,255,0.18); transform: translateY(-4px); }
-    .proj-card:hover::before { opacity: 0.04; }
-    .proj-badge {
-      position: absolute; top: 1rem; right: 1rem;
-      font-size: 0.65rem; font-weight: 700; padding: 0.2rem 0.55rem;
-      border-radius: 4px; background: rgba(63,185,80,0.15); color: var(--green);
-      border: 1px solid rgba(63,185,80,0.3); text-transform: uppercase; letter-spacing: 0.06em;
+    .gitlog li:last-child::before { bottom: auto; height: 1.5rem; }
+    .gitlog .node {
+      position: relative; z-index: 1;
+      width: 1.25rem; height: 1.25rem; margin: .2rem 0 0 .5rem;
+      background: var(--blue); border: 4px solid var(--cyan);
     }
-    .proj-header-row { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 0.85rem; }
-    .proj-icon { font-size: 1.5rem; position: relative; }
-    .proj-name { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 1rem; margin-bottom: 0.4rem; position: relative; }
-    .proj-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.65; margin-bottom: 1.1rem; position: relative; }
-    .proj-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; position: relative; }
-    .proj-tag { padding: 0.18rem 0.55rem; background: var(--surface2); border-radius: 4px; font-size: 0.72rem; color: var(--muted); font-family: 'Space Grotesk', sans-serif; }
+    .gitlog li:first-child .node { background: var(--yellow); border-color: var(--yellow); }
+    .commit-head { font: 500 .8125rem/1.6 var(--mono); color: var(--muted); }
+    .commit-head .hash { color: var(--yellow); margin-right: .6rem; }
+    .commit-head .ref { color: var(--cyan); margin-right: .6rem; }
+    .commit-title {
+      font-family: var(--mono); font-weight: 700;
+      font-size: clamp(1.125rem, 2.4vw, 1.625rem);
+      line-height: 1.25; letter-spacing: -0.02em;
+      margin: .35rem 0 .5rem;
+    }
+    .commit-title .at { color: var(--muted); font-weight: 400; }
+    .commit-body { max-width: 62ch; color: var(--ink); }
 
-    @media (max-width: 700px) {
-      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .comp-grid { grid-template-columns: 1fr 1fr; }
-      .skill-cat-label { min-width: 70px; }
+    .gitlog:not(.shown) li { opacity: 0; transform: translateX(-12px); }
+    .gitlog.shown li { transition: opacity .5s ease, transform .6s cubic-bezier(.2,.9,.2,1); }
+    .gitlog.shown li:nth-child(2) { transition-delay: .15s; }
+    .gitlog.shown li:nth-child(3) { transition-delay: .3s; }
+    .gitlog.shown li:nth-child(4) { transition-delay: .45s; }
+
+    /* ---------- PROJELER ---------- */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(2.5rem, 4vw, 3.25rem) clamp(2rem, 4vw, 3rem);
     }
-    @media (max-width: 420px) {
-      .comp-grid { grid-template-columns: 1fr; }
+    .proj { display: flex; flex-direction: column; gap: 1rem; transition: border-color .15s; }
+    .proj.wide {
+      grid-column: 1 / -1;
+      display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      gap: 1.5rem clamp(2rem, 5vw, 4rem); align-items: end;
+    }
+    .wide-l, .wide-r { display: flex; flex-direction: column; gap: 1rem; }
+    .proj:hover, .proj:focus-within { border-color: var(--yellow); }
+    .proj:hover .win-title, .proj:focus-within .win-title { background: var(--yellow); color: var(--bar-ink); }
+    .proj h3 {
+      font-family: var(--mono); font-weight: 800;
+      font-size: clamp(1.375rem, 3vw, 2.25rem);
+      line-height: 1.1; letter-spacing: -0.03em;
+    }
+    .proj.wide h3 { font-size: clamp(1.75rem, 4.5vw, 3.25rem); max-width: 20ch; }
+    .proj p { max-width: 62ch; }
+    .badge {
+      align-self: flex-start;
+      font: 600 .75rem/1 var(--mono);
+      padding: .45rem .6rem;
+      background: var(--cyan); color: var(--bar-ink);
+    }
+    .proj-links { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; margin-top: auto; padding-top: .5rem; font: 600 .875rem var(--mono); }
+    .proj-links a { color: var(--yellow); text-underline-offset: 4px; }
+    .proj-links a:hover { color: var(--ink); }
+    .more { margin-top: clamp(2rem, 4vw, 3rem); }
+
+    /* ---------- İLETİŞİM ÇAĞRISI ---------- */
+    .cta-line {
+      font-family: var(--mono); font-weight: 800;
+      font-size: clamp(2rem, 6.5vw, 5rem);
+      line-height: 1; letter-spacing: -0.04em;
+      font-variation-settings: "wdth" 112.5;
+      max-width: 24ch;
+      margin-bottom: clamp(2rem, 4vw, 2.5rem);
+    }
+
+    @media (max-width: 860px) {
+      .hero-grid, .about-grid { grid-template-columns: 1fr; }
+      .projects-grid, .proj.wide { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-<a href="#main-content" class="skip-link">İçeriğe geç</a>
+  <a class="skip-link" href="#main-content">İçeriğe geç</a>
 
-<nav aria-label="Ana navigasyon">
-  <a href="index.html" class="nav-logo">Berke Erenç</a>
-  <ul class="nav-links" role="list">
-    <li><a href="index.html" aria-current="page">Ana Sayfa</a></li>
-    <li><a href="projects.html">Projeler</a></li>
-    <li><a href="index.html#hakkimda">Hakkımda</a></li>
-    <li><a href="Berke-Erenc-CV.pdf" target="_blank" rel="noopener noreferrer">CV</a></li>
-    <li><a href="contact.html" class="nav-cta">İletişim</a></li>
-  </ul>
-  <button class="nav-hamburger" aria-label="Menüyü aç" aria-expanded="false" aria-controls="mobile-menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
+  <header class="menubar">
+    <a class="menubar-logo" href="index.html" aria-label="Berke Erenç, ana sayfa">berke.sh</a>
+    <nav aria-label="Ana menü">
+      <ul>
+        <li><a class="item" href="index.html" data-key="a" aria-current="page"><span class="key">A</span>na sayfa</a></li>
+        <li><a class="item" href="projects.html" data-key="p"><span class="key">P</span>rojeler</a></li>
+        <li><a class="item" href="index.html#hakkimda" data-key="h"><span class="key">H</span>akkımda</a></li>
+        <li><a class="item" href="Berke-Erenc-CV.pdf" data-key="c" target="_blank" rel="noopener"><span class="key">C</span>V</a></li>
+        <li><a class="item" href="contact.html" data-key="i"><span class="key">İ</span>letişim</a></li>
+        <li><a class="item" href="blog.html" data-key="y"><span class="key">Y</span>azılar</a></li>
+      </ul>
+    </nav>
+    <span class="menubar-clock" data-clock aria-hidden="true"></span>
+  </header>
 
-<div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobil navigasyon">
-  <a href="index.html" aria-current="page">Ana Sayfa</a>
-  <a href="projects.html">Projeler</a>
-  <a href="index.html#hakkimda">Hakkımda</a>
-  <a href="Berke-Erenc-CV.pdf" target="_blank" rel="noopener noreferrer">CV</a>
-  <a href="contact.html" class="mob-cta">İletişim</a>
-</div>
+  <main id="main-content">
+    <div class="wrap">
+      <section class="hero" aria-labelledby="hero-name">
+        <p class="cmd"><span class="prompt">berke@izmir:~$</span> <span class="typed" data-type="whoami">whoami</span><span class="caret" aria-hidden="true"></span></p>
+        <h1 class="name" id="hero-name" data-stretch>Berke Erenç</h1>
 
-<main id="main-content">
-<div class="page">
+        <div class="hero-grid">
+          <p class="hero-lede">Junior backend developer. .NET, Node.js ve PostgreSQL ile servisler yazıyorum; React ve Angular ile bu servisleri uçtan uca çalışan ürünlere dönüştürüyorum.</p>
+          <dl class="facts">
+            <dt>konum</dt><dd>İzmir, Türkiye</dd>
+            <dt>çalışma</dt><dd>Remote / Hybrid</dd>
+            <dt>şu an</dt><dd>Altınyıldız Classics, stajyer</dd>
+            <dt>durum</dt><dd class="on">Junior backend pozisyonlarına açık</dd>
+          </dl>
+        </div>
 
-  <!-- HERO -->
-  <section class="hero" aria-label="Tanıtım">
-    <div class="blob blob1" aria-hidden="true"></div>
-    <div class="blob blob2" aria-hidden="true"></div>
-    <div class="blob blob3" aria-hidden="true"></div>
+        <div class="actions">
+          <a class="btn primary" href="projects.html"><kbd>P</kbd>Projelerimi gör</a>
+          <a class="btn" href="Berke-Erenc-CV.pdf" target="_blank" rel="noopener"><kbd>C</kbd>CV'yi aç</a>
+          <button class="btn" type="button" data-open-palette><kbd>/</kbd>Komut satırını dene</button>
+        </div>
+      </section>
 
-    <div class="hero-badge" role="status">
-      <span class="dot-live" aria-hidden="true"></span>
-      Junior Backend Pozisyonlarına Açık
-      <span class="hero-location">İzmir · Remote / Hybrid</span>
-    </div>
-
-    <h1 class="hero-name">
-      <span class="gradient-text">Berke Erenç</span>
-    </h1>
-
-    <p class="hero-role-main">Junior Backend Developer</p>
-    <p class="hero-role-sub">Full-Stack Geliştirme Deneyimi</p>
-
-    <p class="hero-desc">
-      .NET, Node.js ve PostgreSQL ile backend servisleri; React ve Angular ile full-stack uygulamalar geliştiriyorum. Ölçeklenebilir sistemler, API tasarımı ve sürdürülebilir yazılım mimarileri üzerine çalışıyorum.
-    </p>
-
-    <div class="hero-btns">
-      <a href="projects.html" class="btn btn-primary">Projelerimi Gör</a>
-      <a href="Berke-Erenc-CV.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">CV'yi Görüntüle ↗</a>
-    </div>
-
-    <div class="hero-socials">
-      <a href="https://github.com/berkeerenc" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Berke Erenç GitHub profili">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-      </a>
-      <a href="https://linkedin.com/in/berke-erenc" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Berke Erenç LinkedIn profili">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-      </a>
-      <a href="mailto:berkeerenc@outlook.com" class="social-icon" aria-label="Berke Erenç e-posta adresi">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-      </a>
-    </div>
-
-    <div class="scroll-hint" aria-hidden="true">
-      <div class="scroll-line"></div>
-      aşağı kaydır
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <div class="section" id="hakkimda">
-    <div class="reveal">
-      <div class="section-label">Hakkımda</div>
-      <h2 class="section-title">Nasıl çalışıyorum, <span class="gradient-text">ne geliştiriyorum</span></h2>
-    </div>
-
-    <div class="about-grid">
-      <div class="about-text reveal">
-        <p>
-          Bilgisayar mühendisliği eğitimim boyunca backend, full-stack, mobil ve yapay zekâ tabanlı projelerde görev aldım. Farklı yazılım ekiplerinde edindiğim dört staj deneyimi sayesinde yalnızca uygulama geliştirme değil; API tasarımı, veritabanı modelleme, test, deployment ve ekip içi geliştirme süreçleri üzerinde de çalışma fırsatı buldum.
-        </p>
-        <p>
-          Son dönemde .NET, Node.js, PostgreSQL ve Docker kullanarak sürdürülebilir backend sistemleri geliştirmeye odaklanıyorum. Frontend tarafındaki Angular ve React deneyimimi ise geliştirdiğim servisleri uçtan uca çalışan ürünlere dönüştürmek için kullanıyorum.
-        </p>
-
-        <div class="skill-cats" aria-label="Teknoloji yetkinlikleri">
-          <div class="skill-cat-row">
-            <span class="skill-cat-label">Backend</span>
-            <div class="skill-cat-tags">
-              <span class="tag tag-purple">.NET</span>
-              <span class="tag tag-purple">Node.js</span>
-              <span class="tag tag-purple">Flask</span>
-            </div>
-          </div>
-          <div class="skill-cat-row">
-            <span class="skill-cat-label">Frontend</span>
-            <div class="skill-cat-tags">
-              <span class="tag tag-pink">Angular</span>
-              <span class="tag tag-pink">React</span>
-              <span class="tag tag-pink">TypeScript</span>
-            </div>
-          </div>
-          <div class="skill-cat-row">
-            <span class="skill-cat-label">Veritabanı</span>
-            <div class="skill-cat-tags">
-              <span class="tag tag-orange">PostgreSQL</span>
-              <span class="tag tag-orange">MongoDB</span>
-              <span class="tag tag-orange">Redis</span>
-            </div>
-          </div>
-          <div class="skill-cat-row">
-            <span class="skill-cat-label">Cloud & Tools</span>
-            <div class="skill-cat-tags">
-              <span class="tag tag-blue">Azure</span>
-              <span class="tag tag-blue">Docker</span>
-              <span class="tag tag-blue">Git</span>
-              <span class="tag tag-blue">Linux</span>
-            </div>
-          </div>
-          <div class="skill-cat-row">
-            <span class="skill-cat-label">AI & CV</span>
-            <div class="skill-cat-tags">
-              <span class="tag tag-gray">TensorFlow</span>
-              <span class="tag tag-gray">MediaPipe</span>
-            </div>
-          </div>
+      <div class="ticker" aria-label="Kullandığım teknolojiler">
+        <div class="ticker-track">
+          <ul>
+            <li>.NET 8</li><li>C#</li><li>Node.js</li><li>PostgreSQL</li><li>Docker</li><li>Angular</li><li>React</li><li>TypeScript</li><li>Redis</li><li>Azure</li><li>Flask</li><li>TensorFlow</li><li>SignalR</li>
+          </ul>
+          <ul aria-hidden="true">
+            <li>.NET 8</li><li>C#</li><li>Node.js</li><li>PostgreSQL</li><li>Docker</li><li>Angular</li><li>React</li><li>TypeScript</li><li>Redis</li><li>Azure</li><li>Flask</li><li>TensorFlow</li><li>SignalR</li>
+          </ul>
         </div>
       </div>
 
-      <div class="comp-grid reveal reveal-delay-1" aria-label="Öne çıkan yetkinlikler">
-        <div class="comp-card">
-          <div class="comp-title">Backend Systems</div>
-          <div class="comp-sub">.NET · Node.js · Flask</div>
+      <section id="hakkimda" aria-labelledby="about-title">
+        <p class="cmd"><span class="prompt">~$</span> cat <span class="arg">hakkimda.md</span></p>
+        <h2 class="section-title" id="about-title">Nasıl çalışıyorum, ne geliştiriyorum</h2>
+        <div class="about-grid">
+          <div class="prose">
+            <p>Bilgisayar mühendisliği eğitimim boyunca backend, full-stack, mobil ve yapay zekâ tabanlı projelerde görev aldım. Farklı yazılım ekiplerinde yaptığım dört staj sayesinde yalnızca uygulama geliştirmeyi değil; API tasarımı, veritabanı modelleme, test, deployment ve ekip içi geliştirme süreçlerini de deneyimledim.</p>
+            <p>Son dönemde .NET, Node.js, PostgreSQL ve Docker ile sürdürülebilir backend sistemleri geliştirmeye odaklanıyorum. Angular ve React deneyimimi ise yazdığım servisleri uçtan uca çalışan ürünlere dönüştürmek için kullanıyorum.</p>
+          </div>
+          <div class="win">
+            <span class="win-close" aria-hidden="true">[■]</span>
+            <span class="win-title">stack.json</span>
+<pre class="json" aria-label="Teknik beceriler"><span class="p">{</span>
+  <span class="k">"backend"</span><span class="p">:</span> <span class="p">[</span><span class="s">".NET"</span><span class="p">,</span> <span class="s">"Node.js"</span><span class="p">,</span> <span class="s">"Flask"</span><span class="p">],</span>
+  <span class="k">"frontend"</span><span class="p">:</span> <span class="p">[</span><span class="s">"Angular"</span><span class="p">,</span> <span class="s">"React"</span><span class="p">,</span> <span class="s">"TypeScript"</span><span class="p">],</span>
+  <span class="k">"veritabani"</span><span class="p">:</span> <span class="p">[</span><span class="s">"PostgreSQL"</span><span class="p">,</span> <span class="s">"MongoDB"</span><span class="p">,</span> <span class="s">"Redis"</span><span class="p">],</span>
+  <span class="k">"araclar"</span><span class="p">:</span> <span class="p">[</span><span class="s">"Azure"</span><span class="p">,</span> <span class="s">"Docker"</span><span class="p">,</span> <span class="s">"Git"</span><span class="p">,</span> <span class="s">"Linux"</span><span class="p">],</span>
+  <span class="k">"yapay_zeka"</span><span class="p">:</span> <span class="p">[</span><span class="s">"TensorFlow"</span><span class="p">,</span> <span class="s">"MediaPipe"</span><span class="p">],</span>
+  <span class="k">"diller"</span><span class="p">:</span> <span class="p">{</span> <span class="k">"en"</span><span class="p">:</span> <span class="s">"C1"</span><span class="p">,</span> <span class="k">"de"</span><span class="p">:</span> <span class="s">"A2"</span> <span class="p">}</span>
+<span class="p">}</span></pre>
+          </div>
         </div>
-        <div class="comp-card">
-          <div class="comp-title">Full-Stack Products</div>
-          <div class="comp-sub">Angular · React · PostgreSQL</div>
+      </section>
+
+      <section id="deneyim" aria-labelledby="exp-title">
+        <p class="cmd"><span class="prompt">~$</span> git log <span class="arg">--author="Berke"</span></p>
+        <h2 class="section-title" id="exp-title">Çalıştığım ekipler</h2>
+        <ol class="gitlog" data-gitlog>
+          <li>
+            <span class="node" aria-hidden="true"></span>
+            <div>
+              <p class="commit-head"><span class="hash">a7c2e1f</span><span class="ref">(HEAD, şimdi)</span>Tem 2026, İzmir</p>
+              <h3 class="commit-title">Software Developer Intern <span class="at">@</span> Altınyıldız Classics</h3>
+              <p class="commit-body">E-ticaret sistemleri için .NET ve PostgreSQL ile RESTful API tasarımı, veri modelleme ve sorgu optimizasyonu. Perakende operasyonlarını hızlandıran dahili otomasyon araçları geliştiriyorum.</p>
+            </div>
+          </li>
+          <li>
+            <span class="node" aria-hidden="true"></span>
+            <div>
+              <p class="commit-head"><span class="hash">5e19b04</span>Haz – Tem 2026, Remote</p>
+              <h3 class="commit-title">Software Developer Intern <span class="at">@</span> VBT Yazılım</h3>
+              <p class="commit-body">Kurumsal mimari, bulut teknolojileri ve agile iş akışlarını kapsayan, mentor eşliğinde yapılandırılmış bir program. Kod incelemeleri ve prodüksiyon geliştirme pratikleri üzerine çalıştım.</p>
+            </div>
+          </li>
+          <li>
+            <span class="node" aria-hidden="true"></span>
+            <div>
+              <p class="commit-head"><span class="hash">c3d88a2</span>Ara 2025 – Şub 2026, Remote</p>
+              <h3 class="commit-title">Frontend Developer Intern <span class="at">@</span> RevloAi</h3>
+              <p class="commit-body">Angular ile yeniden kullanılabilir UI bileşenleri ve durum yönetimi geliştirdim. UI/UX iyileştirmelerine katkı sağladım ve kod tabanının bakımını kolaylaştıran mimari değişiklikler uyguladım.</p>
+            </div>
+          </li>
+          <li>
+            <span class="node" aria-hidden="true"></span>
+            <div>
+              <p class="commit-head"><span class="hash">0b4f7e9</span>Haz – Ağu 2025, Antalya</p>
+              <h3 class="commit-title">Software Developer Intern <span class="at">@</span> Talya Bilişim</h3>
+              <p class="commit-body">Node.js REST API geliştirme ve Angular frontend katkıları. Endpoint testi, ilişkisel veri yönetimi ve agile sprint süreçlerinin olduğu profesyonel bir ekipte çalıştım.</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section id="projeler" aria-labelledby="proj-title">
+        <p class="cmd"><span class="prompt">~$</span> ls <span class="arg">projeler/</span> --secili</p>
+        <h2 class="section-title" id="proj-title">Öne çıkan projeler</h2>
+        <div class="projects-grid">
+          <article class="win proj wide">
+            <span class="win-close" aria-hidden="true">[■]</span>
+            <span class="win-title">physiovision/</span>
+            <div class="wide-l">
+              <span class="badge">TÜBİTAK 2209-A destekli</span>
+              <h3>PhysioVision: yapay zekâ destekli fizyoterapi platformu</h3>
+            </div>
+            <div class="wide-r">
+            <p>MediaPipe ile iskelet takibi ve LSTM ile egzersiz sınıflandırması yapan gerçek zamanlı değerlendirme sistemi. Hasta, terapist ve admin rolleri; React Native mobil uygulama ve Docker ile deployment.</p>
+            <ul class="tags"><li>Flask</li><li>TensorFlow</li><li>PostgreSQL</li><li>Redis</li><li>Docker</li></ul>
+            <div class="proj-links">
+              <a href="projects.html#physiovision">Detayları oku</a>
+              <a href="https://github.com/berkeerenc/PhysioVision" target="_blank" rel="noopener">GitHub'da incele</a>
+            </div>
+            </div>
+          </article>
+          <article class="win proj">
+            <span class="win-close" aria-hidden="true">[■]</span>
+            <span class="win-title">football-matchmaking/</span>
+            <h3>Football Matchmaking</h3>
+            <p>JWT kimlik doğrulama, SignalR ile gerçek zamanlı maç eşleştirme ve bildirimler, oyuncu derecelendirme sistemi. Swagger dokümantasyonlu, güvenlik odaklı .NET 8 API.</p>
+            <ul class="tags"><li>.NET 8</li><li>React</li><li>PostgreSQL</li><li>SignalR</li></ul>
+            <div class="proj-links">
+              <a href="projects.html#football">Detayları oku</a>
+              <a href="https://github.com/berkeerenc/Football_Matchmaking_and_Scouting_Application" target="_blank" rel="noopener">GitHub'da incele</a>
+            </div>
+          </article>
+          <article class="win proj">
+            <span class="win-close" aria-hidden="true">[■]</span>
+            <span class="win-title">hotel-builder/</span>
+            <h3>Hotel Website Builder</h3>
+            <p>Şablon tabanlı otel sitesi oluşturma ve Puppeteer ile mevcut siteleri klonlama. MongoDB ile veri yönetimi ve güvenli dosya işleme katmanı.</p>
+            <ul class="tags"><li>Node.js</li><li>Angular</li><li>MongoDB</li><li>Puppeteer</li></ul>
+            <div class="proj-links">
+              <a href="projects.html#hotel-builder">Detayları oku</a>
+              <a href="https://github.com/berkeerenc/WebsiteBuilder" target="_blank" rel="noopener">GitHub'da incele</a>
+            </div>
+          </article>
         </div>
-        <div class="comp-card">
-          <div class="comp-title">Cloud & DevOps</div>
-          <div class="comp-sub">Azure · Docker · CI/CD</div>
+        <p class="more"><a class="btn" href="projects.html"><kbd>P</kbd>Tüm projeleri listele</a></p>
+      </section>
+
+      <section id="iletisim" aria-labelledby="cta-title">
+        <p class="cmd"><span class="prompt">~$</span> ./<span class="arg">iletisim.sh</span></p>
+        <h2 class="cta-line" id="cta-title">Bir backend ekibine katılmaya hazırım.</h2>
+        <div class="actions">
+          <a class="btn primary" href="mailto:berkeerenc@outlook.com">E-posta gönder</a>
+          <a class="btn" href="https://linkedin.com/in/berke-erenc" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="https://github.com/berkeerenc" target="_blank" rel="noopener">GitHub</a>
         </div>
-        <div class="comp-card">
-          <div class="comp-title">AI-Assisted Apps</div>
-          <div class="comp-sub">TensorFlow · MediaPipe · Computer Vision</div>
-        </div>
-      </div>
+      </section>
+
+      <footer class="site-footer">
+        <span>© <span data-year>2026</span> Berke Erenç</span>
+        <a href="mailto:berkeerenc@outlook.com">berkeerenc@outlook.com</a>
+      </footer>
+    </div>
+  </main>
+
+  <footer class="statusbar" aria-label="Kısayollar">
+    <button type="button" data-open-palette><kbd>/</kbd>Komut</button>
+    <button type="button" class="hide-sm" onclick="location.href='projects.html'"><kbd>P</kbd>Projeler</button>
+    <button type="button" class="hide-sm" onclick="window.open('Berke-Erenc-CV.pdf','_blank','noopener')"><kbd>C</kbd>CV</button>
+    <button type="button" class="hide-sm" onclick="location.href='contact.html'"><kbd>İ</kbd>İletişim</button>
+    <span class="status-right"><span class="status-dot" aria-hidden="true"></span>Junior backend pozisyonlarına açık</span>
+  </footer>
+
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Komut satırı" aria-hidden="true">
+    <div class="win">
+      <span class="win-close" aria-hidden="true">[■]</span>
+      <span class="win-title">berke.sh</span>
+      <div class="palette-log" aria-live="polite"></div>
+      <form class="palette-form" autocomplete="off">
+        <label for="palette-input">$</label>
+        <input id="palette-input" type="text" spellcheck="false" placeholder="yardim yaz, Enter'a bas">
+      </form>
+      <p class="palette-hint">Esc ile kapat. Sayfada harf kısayolları da çalışır: P, H, C, İ.</p>
     </div>
   </div>
 
-  <!-- EXPERIENCE -->
-  <div style="background: rgba(255,255,255,0.015); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
-    <div class="section">
-      <div class="reveal">
-        <div class="section-label">Deneyim</div>
-        <h2 class="section-title">Çalıştığım <span class="gradient-text">ekipler</span></h2>
-      </div>
-
-      <ol class="exp-list" aria-label="İş deneyimleri">
-
-        <li class="exp-item reveal">
-          <div class="exp-timeline" aria-hidden="true">
-            <div class="exp-dot"></div>
-            <div class="exp-line"></div>
-          </div>
-          <div class="exp-content">
-            <div class="exp-header">
-              <span class="exp-company">Altınyıldız Classics</span>
-              <span class="exp-period">Tem 2026 – Devam · İzmir</span>
-            </div>
-            <div class="exp-role">Software Developer Intern</div>
-            <p class="exp-desc">E-ticaret sistemleri için .NET ve PostgreSQL ile RESTful API tasarımı, veri modelleme ve sorgu optimizasyonu. Perakende operasyon iş akışlarını hızlandıran dahili otomasyon araçları geliştirdim.</p>
-          </div>
-        </li>
-
-        <li class="exp-item reveal reveal-delay-1">
-          <div class="exp-timeline" aria-hidden="true">
-            <div class="exp-dot"></div>
-            <div class="exp-line"></div>
-          </div>
-          <div class="exp-content">
-            <div class="exp-header">
-              <span class="exp-company">VBT Yazılım</span>
-              <span class="exp-period">Haz – Tem 2026 · Remote</span>
-            </div>
-            <div class="exp-role">Software Developer Intern</div>
-            <p class="exp-desc">Kurumsal mimari, bulut teknolojileri ve agile iş akışlarını kapsayan mentor eşliğinde yapılandırılmış bir program. Kod incelemeleri ve prodüksiyon geliştirme pratikleri üzerine çalıştım.</p>
-          </div>
-        </li>
-
-        <li class="exp-item reveal reveal-delay-2">
-          <div class="exp-timeline" aria-hidden="true">
-            <div class="exp-dot"></div>
-            <div class="exp-line"></div>
-          </div>
-          <div class="exp-content">
-            <div class="exp-header">
-              <span class="exp-company">RevloAi</span>
-              <span class="exp-period">Ara 2025 – Şub 2026 · Remote</span>
-            </div>
-            <div class="exp-role">Frontend Developer Intern</div>
-            <p class="exp-desc">Angular ile yeniden kullanılabilir UI bileşenleri ve durum yönetimi geliştirdim. UI/UX iyileştirme süreçlerine katkı sağladım ve frontend kod tabanının bakımını kolaylaştıracak mimari değişiklikler uyguladım.</p>
-          </div>
-        </li>
-
-        <li class="exp-item reveal reveal-delay-3">
-          <div class="exp-timeline" aria-hidden="true">
-            <div class="exp-dot"></div>
-            <div class="exp-line"></div>
-          </div>
-          <div class="exp-content">
-            <div class="exp-header">
-              <span class="exp-company">Talya Bilişim</span>
-              <span class="exp-period">Haz – Ağu 2025 · Antalya</span>
-            </div>
-            <div class="exp-role">Software Developer Intern</div>
-            <p class="exp-desc">Node.js REST API geliştirme ve Angular frontend özellik katkıları. Endpoint testi, ilişkisel veri yönetimi ve agile sprint süreçlerini içeren profesyonel bir ekip ortamında çalıştım.</p>
-          </div>
-        </li>
-
-      </ol>
-    </div>
-  </div>
-
-  <!-- FEATURED PROJECTS -->
-  <div class="section">
-    <div class="reveal">
-      <div class="section-label">Seçili Çalışmalarım</div>
-      <h2 class="section-title">Öne çıkan <span class="gradient-text">projeler</span></h2>
-      <p class="section-desc" style="margin-bottom:0;">Tamamını görmek için Projeler sayfasına bakabilirsin.</p>
-    </div>
-
-    <div class="feat-grid" role="list">
-
-      <article class="proj-card" role="listitem" style="--c1:#4FACFE;--c2:#A78BFA;">
-        <div class="proj-badge">TÜBİTAK</div>
-        <div class="proj-header-row">
-          <div class="proj-icon" aria-hidden="true">🧠</div>
-          <a href="projects.html#physiovision" class="btn btn-secondary" style="padding:0.35rem 0.85rem;font-size:0.78rem;" aria-label="PhysioVision proje detayları">Detaylar →</a>
-        </div>
-        <h3 class="proj-name">PhysioVision – AI Rehab Platform</h3>
-        <p class="proj-desc">MediaPipe ile iskelet takibi ve LSTM ile egzersiz sınıflandırması yapan gerçek zamanlı fizyoterapi değerlendirme sistemi. Hasta, terapist ve admin rolleri; React Native mobil uygulama ve Docker deployment.</p>
-        <div class="proj-tags" aria-label="Kullanılan teknolojiler">
-          <span class="proj-tag">Flask</span>
-          <span class="proj-tag">TensorFlow</span>
-          <span class="proj-tag">PostgreSQL</span>
-          <span class="proj-tag">Docker</span>
-        </div>
-      </article>
-
-      <article class="proj-card" role="listitem" style="--c1:#A78BFA;--c2:#3FB950;">
-        <div class="proj-header-row">
-          <div class="proj-icon" aria-hidden="true">⚽</div>
-          <a href="projects.html#football" class="btn btn-secondary" style="padding:0.35rem 0.85rem;font-size:0.78rem;">Detaylar →</a>
-        </div>
-        <h3 class="proj-name">Football Matchmaking App</h3>
-        <p class="proj-desc">JWT kimlik doğrulama, SignalR ile gerçek zamanlı maç eşleştirme ve bildirimler, derecelendirme sistemi. Swagger dokümantasyonlu ve güvenlik odaklı .NET 8 API.</p>
-        <div class="proj-tags" aria-label="Kullanılan teknolojiler">
-          <span class="proj-tag">.NET 8</span>
-          <span class="proj-tag">React</span>
-          <span class="proj-tag">PostgreSQL</span>
-          <span class="proj-tag">SignalR</span>
-        </div>
-      </article>
-
-      <article class="proj-card" role="listitem" style="--c1:#F093FB;--c2:#4FACFE;">
-        <div class="proj-header-row">
-          <div class="proj-icon" aria-hidden="true">🏨</div>
-          <a href="projects.html#hotel-builder" class="btn btn-secondary" style="padding:0.35rem 0.85rem;font-size:0.78rem;">Detaylar →</a>
-        </div>
-        <h3 class="proj-name">Hotel Website Builder</h3>
-        <p class="proj-desc">Şablon tabanlı otel sitesi oluşturma ve Puppeteer ile mevcut siteleri klonlama. MongoDB ile veri yönetimi ve güvenli dosya işleme katmanı.</p>
-        <div class="proj-tags" aria-label="Kullanılan teknolojiler">
-          <span class="proj-tag">Node.js</span>
-          <span class="proj-tag">Angular</span>
-          <span class="proj-tag">MongoDB</span>
-          <span class="proj-tag">Puppeteer</span>
-        </div>
-      </article>
-
-    </div>
-
-    <div style="text-align:center; margin-top:2rem;">
-      <a href="projects.html" class="btn btn-secondary">Tüm Projeleri Gör →</a>
-    </div>
-  </div>
-
-</div>
-</main>
-
-<footer>
-  <p>© <span id="footer-year"></span> Berke Erenç ·
-    <a href="mailto:berkeerenc@outlook.com">berkeerenc@outlook.com</a>
-  </p>
-</footer>
-
-<script>
-  document.getElementById('footer-year').textContent = new Date().getFullYear();
-
-  document.body.classList.add('js-loaded');
-
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-  // Hamburger
-  const btn = document.querySelector('.nav-hamburger');
-  const menu = document.getElementById('mobile-menu');
-  function openMenu() { menu.classList.add('open'); btn.setAttribute('aria-expanded','true'); btn.setAttribute('aria-label','Menüyü kapat'); }
-  function closeMenu() { menu.classList.remove('open'); btn.setAttribute('aria-expanded','false'); btn.setAttribute('aria-label','Menüyü aç'); }
-  btn.addEventListener('click', () => menu.classList.contains('open') ? closeMenu() : openMenu());
-  document.addEventListener('click', e => { if (!nav.contains(e.target) && !menu.contains(e.target)) closeMenu(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
-  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
-  const nav = document.querySelector('nav');
-</script>
+  <script src="shared.js" defer></script>
 </body>
 </html>

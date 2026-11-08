@@ -24,7 +24,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Martian+Mono:wdth,wght@75..112.5,100..800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../shared.css?v=326383f9">
+  <link rel="stylesheet" href="../shared.css?v=eb35180d">
   <style>
     /* ---------- HERO ---------- */
     .hero { padding-top: clamp(1rem, 4vw, 3rem); }
@@ -88,13 +88,14 @@
     /* ---------- HAKKIMDA ---------- */
     .about-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
       gap: clamp(2.5rem, 6vw, 5rem);
       align-items: start;
     }
     .json {
-      font: 400 clamp(.75rem, 1.1vw, .875rem)/1.85 var(--mono);
-      white-space: pre-wrap;
+      font: 400 clamp(.75rem, 1vw, .8125rem)/1.85 var(--mono);
+      white-space: pre;
+      overflow-x: auto;
       overflow-x: auto;
     }
     .json .k { color: var(--cyan); }
@@ -189,6 +190,16 @@
       .projects-grid, .proj.wide { grid-template-columns: 1fr; }
     }
   </style>
+  <script>
+    (function () {
+      var seen = false;
+      try { seen = !!sessionStorage.getItem('berke-booted'); } catch (e) {}
+      if (!seen && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('booting');
+        setTimeout(function () { document.documentElement.classList.remove('booting'); }, 4500);
+      }
+    })();
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -390,6 +401,6 @@
     </div>
   </div>
 
-  <script src="../shared.js?v=90786019" defer></script>
+  <script src="../shared.js?v=d3e19b2a" defer></script>
 </body>
 </html>

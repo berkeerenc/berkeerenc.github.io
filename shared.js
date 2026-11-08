@@ -172,6 +172,7 @@ remote / hybrid pozisyonlara açık.`,
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && palette && palette.classList.contains('open')) { closePalette(); return; }
     if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); openPalette(); return; }
+    if (document.querySelector('.boot')) return;
     const t = e.target;
     if (e.ctrlKey || e.metaKey || e.altKey) return;
     if (t.closest && t.closest('input, textarea, select, [contenteditable]')) return;
@@ -180,6 +181,79 @@ remote / hybrid pozisyonlara açık.`,
     const target = shortcuts[k];
     if (target) { e.preventDefault(); target.click(); }
   });
+
+  /* ---------- açılış: boot sekansı (oturum başına bir kez, sadece ana sayfa) ---------- */
+  const root = document.documentElement;
+  let bootDone = Promise.resolve();
+  if (root.classList.contains('booting')) {
+    bootDone = new Promise(resolve => {
+      const lines = EN ? [
+        ['CPU    Akdeniz University, B.Sc. Computer Engineering', 'OK'],
+        ['MEM    4 internships, 4 teams', 'OK'],
+        ['GPU    PhysioVision: MediaPipe + LSTM, ~82% accuracy', 'OK'],
+        ['LOAD   .NET  Node.js  PostgreSQL  React  Angular', 'bar'],
+        ['MOUNT  /projects', '9 found'],
+        ['NET    İzmir, Türkiye  remote / hybrid', 'OK'],
+        ['>      starting berke.sh', '']
+      ] : [
+        ['CPU    Akdeniz Üniversitesi, Bilgisayar Mühendisliği', 'OK'],
+        ['MEM    4 staj, 4 ekip', 'OK'],
+        ['GPU    PhysioVision: MediaPipe + LSTM, ~%82 doğruluk', 'OK'],
+        ['LOAD   .NET  Node.js  PostgreSQL  React  Angular', 'bar'],
+        ['MOUNT  /projeler', '9 bulundu'],
+        ['NET    İzmir, Türkiye  remote / hybrid', 'OK'],
+        ['>      berke.sh başlatılıyor', '']
+      ];
+      const el = document.createElement('div');
+      el.className = 'boot';
+      el.setAttribute('aria-hidden', 'true');
+      el.innerHTML =
+        `<div class="boot-head"><span><b>BERKE-BIOS</b> v26.11</span><span>© Berke Erenç</span></div>` +
+        `<ol class="boot-lines"></ol>` +
+        `<p class="boot-skip">${EN ? 'press any key to skip' : 'geçmek için bir tuşa bas'}</p>`;
+      document.body.appendChild(el);
+      const list = el.querySelector('.boot-lines');
+      const timers = [];
+      let finished = false;
+
+      const finish = e => {
+        if (e && e.type === 'keydown') e.preventDefault();
+        if (finished) return;
+        finished = true;
+        timers.forEach(clearTimeout);
+        try { sessionStorage.setItem('berke-booted', '1'); } catch (e) {}
+        root.classList.remove('booting');
+        el.classList.add('off');
+        setTimeout(() => { el.remove(); resolve(); }, 380);
+        ['keydown', 'pointerdown', 'touchstart'].forEach(t => window.removeEventListener(t, finish));
+      };
+      window.addEventListener('keydown', finish);
+      ['pointerdown', 'touchstart'].forEach(t => window.addEventListener(t, finish, { passive: true }));
+
+      let t = 120;
+      lines.forEach(([text, status]) => {
+        timers.push(setTimeout(() => {
+          const li = document.createElement('li');
+          if (status === 'bar') {
+            li.innerHTML = `${text}<span class="boot-bar"><i></i></span>`;
+            list.appendChild(li);
+            requestAnimationFrame(() => requestAnimationFrame(() => { li.querySelector('i').style.width = 'calc(100% - 2px)'; }));
+          } else {
+            li.textContent = text + (status ? '  ' : '');
+            if (status) {
+              const s = document.createElement('span');
+              s.className = status === 'OK' ? 'ok' : 'hl';
+              s.textContent = `[ ${status} ]`;
+              li.appendChild(s);
+            }
+            list.appendChild(li);
+          }
+        }, t));
+        t += status === 'bar' ? 620 : 190;
+      });
+      timers.push(setTimeout(finish, t + 280));
+    });
+  }
 
   /* ---------- hero: genişleyen isim ---------- */
   const name = $('[data-stretch]');
@@ -201,8 +275,11 @@ remote / hybrid pozisyonlara açık.`,
     });
 
     if (!reduce) {
-      requestAnimationFrame(() => setTimeout(() => name.classList.add('in'), 650));
-      setTimeout(() => name.classList.add('settled'), 650 + 1000 + letters.length * 55);
+      const delay = root.classList.contains('booting') ? 60 : 650;
+      bootDone.then(() => {
+        requestAnimationFrame(() => setTimeout(() => name.classList.add('in'), delay));
+        setTimeout(() => name.classList.add('settled'), delay + 1000 + letters.length * 55);
+      });
 
       // imlece yakın harfler genişler
       const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
@@ -243,7 +320,7 @@ remote / hybrid pozisyonlara açık.`,
         typed.textContent = full.slice(0, ++i);
         if (i < full.length) setTimeout(step, 55 + Math.random() * 60);
       };
-      setTimeout(step, 250);
+      bootDone.then(() => setTimeout(step, 250));
     }
   }
 

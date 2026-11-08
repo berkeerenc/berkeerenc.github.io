@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Berke Erenç – Junior Backend Developer</title>
+  <meta name="description" content="Portfolio of Berke Erenç, a junior backend developer in İzmir, Türkiye. Backend, full-stack and AI projects built with .NET, Node.js, PostgreSQL and Angular.">
+  <meta name="theme-color" content="#1B2FD8">
+  <meta property="og:title" content="Berke Erenç – Junior Backend Developer">
+  <meta property="og:description" content="Portfolio of Berke Erenç, a junior backend developer in İzmir, Türkiye. Backend, full-stack and AI projects built with .NET, Node.js, PostgreSQL and Angular.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://berkeerenc.github.io/en/">
+  <meta property="og:image" content="https://berkeerenc.github.io/og-image.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Berke Erenç – Junior Backend Developer">
+  <meta name="twitter:description" content="Portfolio of Berke Erenç, a junior backend developer in İzmir, Türkiye. Backend, full-stack and AI projects built with .NET, Node.js, PostgreSQL and Angular.">
+  <meta name="twitter:image" content="https://berkeerenc.github.io/og-image.svg">
+  <link rel="canonical" href="https://berkeerenc.github.io/en/">
+  <link rel="alternate" hreflang="tr" href="https://berkeerenc.github.io/">
+  <link rel="alternate" hreflang="en" href="https://berkeerenc.github.io/en/">
+  <link rel="alternate" hreflang="x-default" href="https://berkeerenc.github.io/en/">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Martian+Mono:wdth,wght@75..112.5,100..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../shared.css?v=326383f9">
+  <style>
+    /* ---------- HERO ---------- */
+    .hero { padding-top: clamp(1rem, 4vw, 3rem); }
+    .hero .cmd { font-size: clamp(.875rem, 1.6vw, 1rem); margin-bottom: clamp(1rem, 3vw, 2rem); }
+    .hero .cmd .typed { color: var(--ink); }
+
+    .name {
+      font-family: var(--mono);
+      font-size: clamp(3.4rem, 22vw, 13.5rem);
+      line-height: .92;
+      letter-spacing: -0.045em;
+      color: var(--ink);
+      margin-left: -0.04em;
+      cursor: default;
+      user-select: none;
+    }
+    .name .ch {
+      display: inline-block;
+      font-variation-settings: "wdth" var(--w, 100), "wght" var(--wg, 800);
+    }
+    .name .sp { display: block; height: 0; }
+    .name:not(.in) .ch {
+      opacity: 0;
+      transform: translateY(.18em);
+      font-variation-settings: "wdth" 75, "wght" 200;
+    }
+    .name.in .ch {
+      transition:
+        opacity .45s ease calc(var(--i) * 55ms),
+        transform .7s cubic-bezier(.2, .9, .2, 1) calc(var(--i) * 55ms),
+        font-variation-settings 1s cubic-bezier(.2, .9, .2, 1) calc(var(--i) * 55ms);
+    }
+    .name.settled .ch { transition: font-variation-settings .35s cubic-bezier(.2, .9, .3, 1); }
+    /* ikinci satır sarı: soyadı terminal vurgusu gibi */
+    .name .ch.last { color: var(--yellow); }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: clamp(1.5rem, 5vw, 4rem);
+      align-items: end;
+      margin-top: clamp(2rem, 5vw, 3.5rem);
+    }
+    .hero-lede { font-size: clamp(1.0625rem, 1.9vw, 1.3125rem); line-height: 1.55; max-width: 44ch; }
+
+    .facts {
+      font: 500 .875rem/1.5 var(--mono);
+      border-left: 4px double var(--ink);
+      padding-left: 1.25rem;
+      display: grid; grid-template-columns: auto 1fr; gap: .4rem 1rem;
+    }
+    .facts dt { color: var(--muted); }
+    .facts dd { color: var(--ink); }
+    .facts dd.on { color: var(--cyan); }
+
+    .actions { display: flex; flex-wrap: wrap; gap: 1rem 1.25rem; margin-top: clamp(2rem, 5vw, 3rem); }
+    .actions button.btn { border: 0; cursor: pointer; background: transparent; color: var(--ink); box-shadow: inset 0 0 0 2px var(--ink); }
+    .actions button.btn kbd { color: var(--yellow); }
+    .actions button.btn:hover { box-shadow: inset 0 0 0 2px var(--yellow); transform: none; }
+
+    /* ---------- HAKKIMDA ---------- */
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+      gap: clamp(2.5rem, 6vw, 5rem);
+      align-items: start;
+    }
+    .json {
+      font: 400 clamp(.75rem, 1.1vw, .875rem)/1.85 var(--mono);
+      white-space: pre-wrap;
+      overflow-x: auto;
+    }
+    .json .k { color: var(--cyan); }
+    .json .s { color: var(--yellow); }
+    .json .p { color: var(--muted); }
+
+    /* ---------- DENEYİM: git log ---------- */
+    .gitlog { list-style: none; position: relative; max-width: 900px; }
+    .gitlog li {
+      position: relative;
+      display: grid;
+      grid-template-columns: 2.25rem minmax(0, 1fr);
+      padding-bottom: clamp(2rem, 4vw, 2.75rem);
+    }
+    .gitlog li::before {
+      content: "";
+      position: absolute; left: calc(1.125rem - 2px); top: .5rem; bottom: -0.25rem;
+      width: 4px; background: var(--cyan);
+    }
+    .gitlog li:last-child::before { bottom: auto; height: 1.5rem; }
+    .gitlog .node {
+      position: relative; z-index: 1;
+      width: 1.25rem; height: 1.25rem; margin: .2rem 0 0 .5rem;
+      background: var(--blue); border: 4px solid var(--cyan);
+    }
+    .gitlog li:first-child .node { background: var(--yellow); border-color: var(--yellow); }
+    .commit-head { font: 500 .8125rem/1.6 var(--mono); color: var(--muted); }
+    .commit-head .hash { color: var(--yellow); margin-right: .6rem; }
+    .commit-head .ref { color: var(--cyan); margin-right: .6rem; }
+    .commit-title {
+      font-family: var(--mono); font-weight: 700;
+      font-size: clamp(1.125rem, 2.4vw, 1.625rem);
+      line-height: 1.25; letter-spacing: -0.02em;
+      margin: .35rem 0 .5rem;
+    }
+    .commit-title .at { color: var(--muted); font-weight: 400; }
+    .commit-body { max-width: 62ch; color: var(--ink); }
+
+    .gitlog:not(.shown) li { opacity: 0; transform: translateX(-12px); }
+    .gitlog.shown li { transition: opacity .5s ease, transform .6s cubic-bezier(.2,.9,.2,1); }
+    .gitlog.shown li:nth-child(2) { transition-delay: .15s; }
+    .gitlog.shown li:nth-child(3) { transition-delay: .3s; }
+    .gitlog.shown li:nth-child(4) { transition-delay: .45s; }
+
+    /* ---------- PROJELER ---------- */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(2.5rem, 4vw, 3.25rem) clamp(2rem, 4vw, 3rem);
+    }
+    .proj { display: flex; flex-direction: column; gap: 1rem; transition: border-color .15s; }
+    .proj.wide {
+      grid-column: 1 / -1;
+      display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      gap: 1.5rem clamp(2rem, 5vw, 4rem); align-items: end;
+    }
+    .wide-l, .wide-r { display: flex; flex-direction: column; gap: 1rem; }
+    .proj:hover, .proj:focus-within { border-color: var(--yellow); }
+    .proj:hover .win-title, .proj:focus-within .win-title { background: var(--yellow); color: var(--bar-ink); }
+    .proj h3 {
+      font-family: var(--mono); font-weight: 800;
+      font-size: clamp(1.375rem, 3vw, 2.25rem);
+      line-height: 1.1; letter-spacing: -0.03em;
+    }
+    .proj.wide h3 { font-size: clamp(1.75rem, 4.5vw, 3.25rem); max-width: 20ch; }
+    .proj p { max-width: 62ch; }
+    .proj .proj-role { font: 500 .875rem var(--mono); color: var(--cyan); }
+    .badge {
+      align-self: flex-start;
+      font: 600 .75rem/1 var(--mono);
+      padding: .45rem .6rem;
+      background: var(--cyan); color: var(--bar-ink);
+    }
+    .proj-links { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; margin-top: auto; padding-top: .5rem; font: 600 .875rem var(--mono); }
+    .proj-links a { color: var(--yellow); text-underline-offset: 4px; }
+    .proj-links a:hover { color: var(--ink); }
+    .more { margin-top: clamp(2rem, 4vw, 3rem); }
+
+    /* ---------- İLETİŞİM ÇAĞRISI ---------- */
+    .cta-line {
+      font-family: var(--mono); font-weight: 800;
+      font-size: clamp(2rem, 6.5vw, 5rem);
+      line-height: 1; letter-spacing: -0.04em;
+      font-variation-settings: "wdth" 112.5;
+      max-width: 24ch;
+      margin-bottom: clamp(2rem, 4vw, 2.5rem);
+    }
+
+    @media (max-width: 860px) {
+      .hero-grid, .about-grid { grid-template-columns: 1fr; }
+      .json { white-space: pre; font-size: .75rem; }
+      .projects-grid, .proj.wide { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="menubar">
+    <a class="menubar-logo" href="index.html" aria-label="Berke Erenç, home">berke.sh</a>
+    <nav aria-label="Main menu">
+      <ul>
+        <li><a class="item" href="index.html" data-key="h" aria-current="page"><span class="key">H</span>ome</a></li>
+        <li><a class="item" href="projects.html" data-key="p"><span class="key">P</span>rojects</a></li>
+        <li><a class="item" href="index.html#about" data-key="a"><span class="key">A</span>bout</a></li>
+        <li><a class="item" href="../Berke-Erenc-CV.pdf" data-key="c" target="_blank" rel="noopener"><span class="key">C</span>V</a></li>
+        <li><a class="item" href="contact.html" data-key="t">Con<span class="key">t</span>act</a></li>
+        <li><a class="item" href="blog.html" data-key="w"><span class="key">W</span>riting</a></li>
+      </ul>
+    </nav>
+    <div class="lang-switch" role="group" aria-label="Language"><a href="../index.html" hreflang="tr" lang="tr">TR</a><a href="index.html" hreflang="en" lang="en" aria-current="true">EN</a></div>
+    <span class="menubar-clock" data-clock aria-hidden="true"></span>
+  </header>
+
+  <main id="main-content">
+    <div class="wrap">
+      <section class="hero" aria-labelledby="hero-name">
+        <p class="cmd"><span class="prompt">berke@izmir:~$</span> <span class="typed" data-type="whoami">whoami</span><span class="caret" aria-hidden="true"></span></p>
+        <h1 class="name" id="hero-name" data-stretch>Berke Erenç</h1>
+
+        <div class="hero-grid">
+          <p class="hero-lede">Junior backend developer. I build services with .NET, Node.js and PostgreSQL, and turn them into working end-to-end products with React and Angular.</p>
+          <dl class="facts">
+            <dt>location</dt><dd>İzmir, Türkiye</dd>
+            <dt>work</dt><dd>Remote / Hybrid</dd>
+            <dt>now</dt><dd>Intern at Altınyıldız Classics</dd>
+            <dt>status</dt><dd class="on">Open to junior backend roles</dd>
+          </dl>
+        </div>
+
+        <div class="actions">
+          <a class="btn primary" href="projects.html"><kbd>P</kbd>See my projects</a>
+          <a class="btn" href="../Berke-Erenc-CV.pdf" target="_blank" rel="noopener"><kbd>C</kbd>Open CV</a>
+          <button class="btn" type="button" data-open-palette><kbd>/</kbd>Try the command line</button>
+        </div>
+      </section>
+
+      <div class="ticker" aria-label="Technologies I use">
+        <div class="ticker-track">
+          <ul>
+            <li>.NET 8</li><li>C#</li><li>Node.js</li><li>PostgreSQL</li><li>Docker</li><li>Angular</li><li>React</li><li>TypeScript</li><li>Redis</li><li>Azure</li><li>Flask</li><li>TensorFlow</li><li>SignalR</li>
+          </ul>
+          <ul aria-hidden="true">
+            <li>.NET 8</li><li>C#</li><li>Node.js</li><li>PostgreSQL</li><li>Docker</li><li>Angular</li><li>React</li><li>TypeScript</li><li>Redis</li><li>Azure</li><li>Flask</li><li>TensorFlow</li><li>SignalR</li>
+          </ul>
+        </div>
+      </div>
+
+      <section id="about" aria-labelledby="about-title">
+        <p class="cmd"><span class="prompt">~$</span> cat <span class="arg">about.md</span></p>
+        <h2 class="section-title" id="about-title">How I work and what I build</h2>
+        <div class="about-grid">
+          <div class="prose">
+            <p>During my computer engineering degree I worked on backend, full-stack, mobile and AI-based projects. Four internships across different software teams gave me hands-on experience not only in building applications, but also in API design, data modeling, testing, deployment and team workflows.</p>
+            <p>Lately I've been focusing on maintainable backend systems with .NET, Node.js, PostgreSQL and Docker. I use my Angular and React experience to turn the services I write into products that work end to end.</p>
+          </div>
+          <div class="win">
+            <span class="win-close" aria-hidden="true">[■]</span>
+            <span class="win-title">stack.json</span>
+<pre class="json" aria-label="Technical skills"><span class="p">{</span>
+  <span class="k">"backend"</span><span class="p">:</span> <span class="p">[</span><span class="s">".NET"</span><span class="p">,</span> <span class="s">"Node.js"</span><span class="p">,</span> <span class="s">"Flask"</span><span class="p">],</span>
+  <span class="k">"frontend"</span><span class="p">:</span> <span class="p">[</span><span class="s">"Angular"</span><span class="p">,</span> <span class="s">"React"</span><span class="p">,</span> <span class="s">"TypeScript"</span><span class="p">],</span>
+  <span class="k">"databases"</span><span class="p">:</span> <span class="p">[</span><span class="s">"PostgreSQL"</span><span class="p">,</span> <span class="s">"MongoDB"</span><span class="p">,</span> <span class="s">"Redis"</span><span class="p">],</span>
+  <span class="k">"tools"</span><span class="p">:</span> <span class="p">[</span><span class="s">"Azure"</span><span class="p">,</span> <span class="s">"Docker"</span><span class="p">,</span> <span class="s">"Git"</span><span class="p">,</span> <span class="s">"Linux"</span><span class="p">],</span>
+  <span class="k">"ai"</span><span class="p">:</span> <span class="p">[</span><span class="s">"TensorFlow"</span><span class="p">,</span> <span class="s">"MediaPipe"</span><span class="p">],</span>
+  <span class="k">"languages"</span><span class="p">:</span> <span class="p">{</span> <span class="k">"tr"</span><span class="p">:</span> <span class="s">"native"</span><span class="p">,</span> <span class="k">"en"</span><span class="p">:</span> <span class="s">"C1"</span><span class="p">,</span> <span class="k">"de"</span><span class="p">:</span> <span class="s">"A2"</span> <span class="p">}</span>
+<span class="p">}</span></pre>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience" aria-labelledby="exp-title">
+        <p class="cmd"><span class="prompt">~$</span> git log <span class="arg">--author="Berke"</span></p>
+        <h2 class="section-title" id="exp-title">Teams I've worked with</h2>
+        <ol class="gitlog" data-gitlog>
+          <li>
+            <span class="node" aria-hidden="true"></span>
+            <div>
+              <p class="commit-head"><span class="hash">a7c2e1f</span><span class="ref">(HEAD, now)</span>Jul 2026, İzmir</p>
+              <h3 class="commit-title">Software Developer Intern <span class="at">@</span> Altınyıldız Classics</h3>
+              <p class="commit-body">Designing RESTful APIs, data models and query optimizations for e-commerce systems with .NET and PostgreSQL. Building internal automation tools that speed up retail operations.</p>
+            </div>
+          </li>
+          <li>
+            <span class="node" aria-hidden="true"></span>
+            <div>
+              <p class="commit-head"><span class="hash">5e19b04</span>Jun – Jul 2026, Remote</p>
+              <h3 class="commit-title">Software Developer Intern <span class="at">@</span> VBT Yazılım</h3>
+              <p class="commit-body">A structured, mentor-led program covering enterprise architecture, cloud technologies and agile workflows. Worked on code reviews and production development practices.</p>
+            </div>
+          </li>
+          <li>
+            <span class="node" aria-hidden="true"></span>
+            <div>
+              <p class="commit-head"><span class="hash">c3d88a2</span>Dec 2025 – Feb 2026, Remote</p>
+              <h3 class="commit-title">Frontend Developer Intern <span class="at">@</span> RevloAi</h3>
+              <p class="commit-body">Built reusable Angular UI components and state management. Contributed to UI/UX improvements and architectural changes that made the codebase easier to maintain.</p>
+            </div>
+          </li>
+          <li>
+            <span class="node" aria-hidden="true"></span>
+            <div>
+              <p class="commit-head"><span class="hash">0b4f7e9</span>Jun – Aug 2025, Antalya</p>
+              <h3 class="commit-title">Software Developer Intern <span class="at">@</span> Talya Bilişim</h3>
+              <p class="commit-body">Node.js REST API development and Angular frontend features. Worked in a professional team with endpoint testing, relational data and agile sprints.</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section id="projects" aria-labelledby="proj-title">
+        <p class="cmd"><span class="prompt">~$</span> ls <span class="arg">projects/</span> --featured</p>
+        <h2 class="section-title" id="proj-title">Featured projects</h2>
+        <div class="projects-grid">
+          <article class="win proj wide">
+            <span class="win-close" aria-hidden="true">[■]</span>
+            <span class="win-title">physiovision/</span>
+            <div class="wide-l">
+              <span class="badge">Funded by TÜBİTAK 2209-A</span>
+              <h3>PhysioVision: an AI-powered physiotherapy platform</h3>
+              <p class="proj-role">Team lead and backend architect</p>
+            </div>
+            <div class="wide-r">
+            <p>A real-time assessment system that tracks body pose with MediaPipe and classifies exercises with an LSTM model. Patient, therapist and admin roles, a React Native mobile app and Docker deployment.</p>
+            <ul class="tags"><li>Flask</li><li>TensorFlow</li><li>PostgreSQL</li><li>Redis</li><li>Docker</li></ul>
+            <div class="proj-links">
+              <a href="projects.html#physiovision">Read details</a>
+              <a href="https://github.com/berkeerenc/PhysioVision" target="_blank" rel="noopener">View on GitHub</a>
+            </div>
+            </div>
+          </article>
+          <article class="win proj">
+            <span class="win-close" aria-hidden="true">[■]</span>
+            <span class="win-title">football-matchmaking/</span>
+            <h3>Football Matchmaking</h3>
+            <p>JWT authentication, real-time match pairing and notifications with SignalR, and a player rating system. A security-focused .NET 8 API documented with Swagger.</p>
+            <ul class="tags"><li>.NET 8</li><li>React</li><li>PostgreSQL</li><li>SignalR</li></ul>
+            <div class="proj-links">
+              <a href="projects.html#football">Read details</a>
+              <a href="https://github.com/berkeerenc/Football_Matchmaking_and_Scouting_Application" target="_blank" rel="noopener">View on GitHub</a>
+            </div>
+          </article>
+          <article class="win proj">
+            <span class="win-close" aria-hidden="true">[■]</span>
+            <span class="win-title">hotel-builder/</span>
+            <h3>Hotel Website Builder</h3>
+            <p>Template-based hotel website generation and cloning of existing sites with Puppeteer. Data management with MongoDB and a secure file-handling layer.</p>
+            <ul class="tags"><li>Node.js</li><li>Angular</li><li>MongoDB</li><li>Puppeteer</li></ul>
+            <div class="proj-links">
+              <a href="projects.html#hotel-builder">Read details</a>
+              <a href="https://github.com/berkeerenc/WebsiteBuilder" target="_blank" rel="noopener">View on GitHub</a>
+            </div>
+          </article>
+        </div>
+        <p class="more"><a class="btn" href="projects.html"><kbd>P</kbd>List all projects</a></p>
+      </section>
+
+      <section id="contact" aria-labelledby="cta-title">
+        <p class="cmd"><span class="prompt">~$</span> ./<span class="arg">contact.sh</span></p>
+        <h2 class="cta-line" id="cta-title">Ready to join a backend team.</h2>
+        <div class="actions">
+          <a class="btn primary" href="mailto:berkeerenc@outlook.com">Send an email</a>
+          <a class="btn" href="https://linkedin.com/in/berke-erenc" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="https://github.com/berkeerenc" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <span>© <span data-year>2026</span> Berke Erenç</span>
+        <a href="mailto:berkeerenc@outlook.com">berkeerenc@outlook.com</a>
+      </footer>
+    </div>
+  </main>
+
+  <footer class="statusbar" aria-label="Shortcuts">
+    <button type="button" data-open-palette><kbd>/</kbd>Command</button>
+    <button type="button" class="hide-sm" onclick="location.href='projects.html'"><kbd>P</kbd>Projects</button>
+    <button type="button" class="hide-sm" onclick="window.open('../Berke-Erenc-CV.pdf','_blank','noopener')"><kbd>C</kbd>CV</button>
+    <button type="button" class="hide-sm" onclick="location.href='contact.html'"><kbd>T</kbd>Contact</button>
+    <span class="status-right"><span class="status-dot" aria-hidden="true"></span><span class="hide-sm">Open to junior backend roles</span><span class="show-sm">Open to work</span></span>
+  </footer>
+
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Command line" aria-hidden="true">
+    <div class="win">
+      <span class="win-close" aria-hidden="true">[■]</span>
+      <span class="win-title">berke.sh</span>
+      <div class="palette-log" aria-live="polite"></div>
+      <form class="palette-form" autocomplete="off">
+        <label for="palette-input">$</label>
+        <input id="palette-input" type="text" spellcheck="false" placeholder="type help, press Enter">
+      </form>
+      <p class="palette-hint">Press Esc to close. Letter shortcuts work on the page too: P, A, C, T.</p>
+    </div>
+  </div>
+
+  <script src="../shared.js?v=90786019" defer></script>
+</body>
+</html>

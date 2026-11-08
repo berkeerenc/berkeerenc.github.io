@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Writing – Berke Erenç</title>
+  <meta name="description" content="Technical notes and project write-ups by Berke Erenç. Coming soon.">
+  <meta name="theme-color" content="#1B2FD8">
+  <meta property="og:title" content="Writing – Berke Erenç">
+  <meta property="og:description" content="Technical notes and project write-ups by Berke Erenç. Coming soon.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://berkeerenc.github.io/en/blog.html">
+  <meta property="og:image" content="https://berkeerenc.github.io/og-image.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Writing – Berke Erenç">
+  <meta name="twitter:description" content="Technical notes and project write-ups by Berke Erenç. Coming soon.">
+  <meta name="twitter:image" content="https://berkeerenc.github.io/og-image.svg">
+  <link rel="canonical" href="https://berkeerenc.github.io/en/blog.html">
+  <link rel="alternate" hreflang="tr" href="https://berkeerenc.github.io/blog.html">
+  <link rel="alternate" hreflang="en" href="https://berkeerenc.github.io/en/blog.html">
+  <link rel="alternate" hreflang="x-default" href="https://berkeerenc.github.io/en/blog.html">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Martian+Mono:wdth,wght@75..112.5,100..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../shared.css?v=326383f9">
+  <style>
+    .empty { max-width: 760px; margin: clamp(2rem, 8vw, 5rem) auto 0; }
+    .empty pre {
+      font: 400 clamp(.875rem, 1.5vw, 1rem)/1.9 var(--mono);
+      white-space: pre-wrap;
+      margin-bottom: 2rem;
+    }
+    .empty .prompt { color: var(--cyan); }
+    .empty .dim { color: var(--muted); }
+    .empty h1 {
+      font-family: var(--mono); font-weight: 800;
+      font-size: clamp(2.25rem, 7vw, 4.5rem);
+      line-height: 1; letter-spacing: -0.04em;
+      font-variation-settings: "wdth" 112.5;
+      margin-bottom: 1rem;
+    }
+    .empty p { max-width: 52ch; margin-bottom: 2rem; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="menubar">
+    <a class="menubar-logo" href="index.html" aria-label="Berke Erenç, home">berke.sh</a>
+    <nav aria-label="Main menu">
+      <ul>
+        <li><a class="item" href="index.html" data-key="h"><span class="key">H</span>ome</a></li>
+        <li><a class="item" href="projects.html" data-key="p"><span class="key">P</span>rojects</a></li>
+        <li><a class="item" href="index.html#about" data-key="a"><span class="key">A</span>bout</a></li>
+        <li><a class="item" href="../Berke-Erenc-CV.pdf" data-key="c" target="_blank" rel="noopener"><span class="key">C</span>V</a></li>
+        <li><a class="item" href="contact.html" data-key="t">Con<span class="key">t</span>act</a></li>
+        <li><a class="item" href="blog.html" data-key="w" aria-current="page"><span class="key">W</span>riting</a></li>
+      </ul>
+    </nav>
+    <div class="lang-switch" role="group" aria-label="Language"><a href="../blog.html" hreflang="tr" lang="tr">TR</a><a href="blog.html" hreflang="en" lang="en" aria-current="true">EN</a></div>
+    <span class="menubar-clock" data-clock aria-hidden="true"></span>
+  </header>
+
+  <main id="main-content">
+    <div class="wrap">
+      <section class="empty win" aria-labelledby="page-title">
+        <span class="win-close" aria-hidden="true">[■]</span>
+        <span class="win-title">writing/</span>
+<pre><span class="prompt">~$</span> ls writing/
+<span class="dim">total 0</span>
+<span class="prompt">~$</span> <span class="caret" aria-hidden="true"></span></pre>
+        <h1 id="page-title">Writing is coming soon</h1>
+        <p>I'll share project notes and what I learn while building things here. Until then, take a look at my projects.</p>
+        <a class="btn primary" href="projects.html"><kbd>P</kbd>Go to projects</a>
+      </section>
+
+      <footer class="site-footer">
+        <span>© <span data-year>2026</span> Berke Erenç</span>
+        <a href="mailto:berkeerenc@outlook.com">berkeerenc@outlook.com</a>
+      </footer>
+    </div>
+  </main>
+
+  <footer class="statusbar" aria-label="Shortcuts">
+    <button type="button" data-open-palette><kbd>/</kbd>Command</button>
+    <button type="button" class="hide-sm" onclick="location.href='projects.html'"><kbd>P</kbd>Projects</button>
+    <button type="button" class="hide-sm" onclick="window.open('../Berke-Erenc-CV.pdf','_blank','noopener')"><kbd>C</kbd>CV</button>
+    <button type="button" class="hide-sm" onclick="location.href='contact.html'"><kbd>T</kbd>Contact</button>
+    <span class="status-right"><span class="status-dot" aria-hidden="true"></span><span class="hide-sm">Open to junior backend roles</span><span class="show-sm">Open to work</span></span>
+  </footer>
+
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Command line" aria-hidden="true">
+    <div class="win">
+      <span class="win-close" aria-hidden="true">[■]</span>
+      <span class="win-title">berke.sh</span>
+      <div class="palette-log" aria-live="polite"></div>
+      <form class="palette-form" autocomplete="off">
+        <label for="palette-input">$</label>
+        <input id="palette-input" type="text" spellcheck="false" placeholder="type help, press Enter">
+      </form>
+      <p class="palette-hint">Press Esc to close. Letter shortcuts work on the page too: P, A, C, T.</p>
+    </div>
+  </div>
+
+  <script src="../shared.js?v=90786019" defer></script>
+</body>
+</html>

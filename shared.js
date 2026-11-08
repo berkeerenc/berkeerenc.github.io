@@ -17,12 +17,43 @@
     setInterval(tick, 30000);
   }
 
-  /* ---------- komutlar ---------- */
-  const go = url => () => { window.location.href = url; return null; };
-  const open = url => () => { window.open(url, '_blank', 'noopener'); return ['ok', `açılıyor: ${url}`]; };
-
-  const commands = {
-    yardim: () => ['out',
+  /* ---------- dil + komutlar ---------- */
+  const EN = document.documentElement.lang === 'en';
+  const CV = EN ? '../Berke-Erenc-CV.pdf' : 'Berke-Erenc-CV.pdf';
+  const T = EN ? {
+    welcome: "welcome to berke.sh. type 'help' to see the commands.",
+    help:
+`available commands:
+  whoami       short intro
+  ls           list pages
+  projects     go to projects
+  about        jump to about
+  experience   jump to experience
+  contact      go to contact
+  cv           open CV (PDF)
+  github       open GitHub profile
+  linkedin     open LinkedIn profile
+  email        write an email
+  tr           Türkçe sürüme geç
+  clear        clear the screen
+  exit         close the command line`,
+    whoami:
+`Berke Erenç
+junior backend developer, İzmir, Türkiye
+writes services with .NET, Node.js and PostgreSQL;
+turns them into end-to-end products with React and Angular.
+open to remote / hybrid roles.`,
+    ls: 'index.html   projects.html   contact.html   blog.html   ../Berke-Erenc-CV.pdf',
+    opening: u => `opening: ${u}`,
+    mail: 'opening your email client…',
+    sudo: 'permission denied. root access is granted after hiring.',
+    notFound: n => `command not found: ${n}. type 'help' to see the list.`,
+    count: n => `${n} project${n === 1 ? '' : 's'} listed`,
+    about: 'index.html#about', experience: 'index.html#experience',
+    other: '../index.html'
+  } : {
+    welcome: "berke.sh'a hoş geldin. komutları görmek için 'yardim' yaz.",
+    help:
 `kullanılabilir komutlar:
   whoami       kısa tanıtım
   ls           sayfaları listele
@@ -34,33 +65,56 @@
   github       GitHub profilini aç
   linkedin     LinkedIn profilini aç
   eposta       e-posta yaz
+  en           switch to English
   temizle      ekranı temizle
-  cikis        paleti kapat`],
-    whoami: () => ['out',
+  cikis        paleti kapat`,
+    whoami:
 `Berke Erenç
 junior backend developer, İzmir
 .NET, Node.js ve PostgreSQL ile servis yazıyor;
 React ve Angular ile uçtan uca ürüne çeviriyor.
-remote / hybrid pozisyonlara açık.`],
-    ls: () => ['out', 'index.html   projects.html   contact.html   blog.html   Berke-Erenc-CV.pdf'],
-    projeler: go('projects.html'),
-    hakkimda: go('index.html#hakkimda'),
-    deneyim: go('index.html#deneyim'),
-    iletisim: go('contact.html'),
+remote / hybrid pozisyonlara açık.`,
+    ls: 'index.html   projects.html   contact.html   blog.html   Berke-Erenc-CV.pdf',
+    opening: u => `açılıyor: ${u}`,
+    mail: 'e-posta istemcisi açılıyor…',
+    sudo: 'izin reddedildi. root yetkisi işe alım sonrası verilir.',
+    notFound: n => `komut bulunamadı: ${n}. 'yardim' yazarak listeye bakabilirsin.`,
+    count: n => `${n} proje listelendi`,
+    about: 'index.html#hakkimda', experience: 'index.html#deneyim',
+    other: 'en/index.html'
+  };
+
+  const go = url => () => { window.location.href = url; return null; };
+  const open = url => () => { window.open(url, '_blank', 'noopener'); return ['ok', T.opening(url)]; };
+
+  const commands = {
+    help: () => ['out', T.help],
+    whoami: () => ['out', T.whoami],
+    ls: () => ['out', T.ls],
+    projects: go('projects.html'),
+    about: go(T.about),
+    experience: go(T.experience),
+    contact: go('contact.html'),
     blog: go('blog.html'),
-    anasayfa: go('index.html'),
-    cv: open('Berke-Erenc-CV.pdf'),
+    home: go('index.html'),
+    lang: go(T.other),
+    cv: open(CV),
     github: open('https://github.com/berkeerenc'),
     linkedin: open('https://linkedin.com/in/berke-erenc'),
-    eposta: () => { window.location.href = 'mailto:berkeerenc@outlook.com'; return ['ok', 'e-posta istemcisi açılıyor…']; },
-    sudo: () => ['err', 'izin reddedildi. root yetkisi işe alım sonrası verilir.'],
-    temizle: () => 'clear',
-    cikis: () => 'close'
+    email: () => { window.location.href = 'mailto:berkeerenc@outlook.com'; return ['ok', T.mail]; },
+    sudo: () => ['err', T.sudo],
+    clear: () => 'clear',
+    exit: () => 'close'
   };
   const aliases = {
-    help: 'yardim', yardım: 'yardim', '?': 'yardim', projects: 'projeler', about: 'hakkimda', hakkımda: 'hakkimda',
-    contact: 'iletisim', iletişim: 'iletisim', mail: 'eposta', email: 'eposta', 'e-posta': 'eposta',
-    clear: 'temizle', exit: 'cikis', çıkış: 'cikis', q: 'cikis', home: 'anasayfa', cd: 'anasayfa'
+    yardim: 'help', yardım: 'help', '?': 'help',
+    projeler: 'projects', hakkimda: 'about', hakkımda: 'about', deneyim: 'experience',
+    iletisim: 'contact', iletişim: 'contact', yazilar: 'blog', yazılar: 'blog', writing: 'blog',
+    anasayfa: 'home', cd: 'home',
+    eposta: 'email', 'e-posta': 'email', mail: 'email',
+    temizle: 'clear', cikis: 'exit', çıkış: 'exit', q: 'exit',
+    tr: EN ? 'lang' : null, turkce: EN ? 'lang' : null, türkçe: EN ? 'lang' : null,
+    en: EN ? null : 'lang', english: EN ? null : 'lang', ingilizce: EN ? null : 'lang'
   };
 
   /* ---------- komut paleti ---------- */
@@ -82,7 +136,7 @@ remote / hybrid pozisyonlara açık.`],
     lastFocus = document.activeElement;
     palette.classList.add('open');
     palette.setAttribute('aria-hidden', 'false');
-    if (!log.childElementCount) print('out', "berke.sh'a hoş geldin. komutları görmek için 'yardim' yaz.");
+    if (!log.childElementCount) print('out', T.welcome);
     input.focus();
   };
   const closePalette = () => {
@@ -99,9 +153,9 @@ remote / hybrid pozisyonlara açık.`],
       input.value = '';
       if (!raw) return;
       print('echo', raw);
-      const name = raw.toLocaleLowerCase('tr-TR').split(/\s+/)[0];
+      const name = raw.toLocaleLowerCase(EN ? 'en-US' : 'tr-TR').split(/\s+/)[0];
       const key = commands[name] ? name : aliases[name];
-      if (!key) { print('err', `komut bulunamadı: ${name}. 'yardim' yazarak listeye bakabilirsin.`); return; }
+      if (!key) { print('err', T.notFound(name)); return; }
       const res = commands[key]();
       if (res === 'clear') log.textContent = '';
       else if (res === 'close') closePalette();
@@ -122,7 +176,7 @@ remote / hybrid pozisyonlara açık.`],
     if (e.ctrlKey || e.metaKey || e.altKey) return;
     if (t.closest && t.closest('input, textarea, select, [contenteditable]')) return;
     if (e.key === '/') { e.preventDefault(); openPalette(); return; }
-    const k = e.key.toLocaleLowerCase('tr-TR');
+    const k = e.key.toLocaleLowerCase(EN ? 'en-US' : 'tr-TR');
     const target = shortcuts[k];
     if (target) { e.preventDefault(); target.click(); }
   });
@@ -221,7 +275,7 @@ remote / hybrid pozisyonlara açık.`],
         if (show) n++;
       });
       groups.forEach(g => (g.hidden = !$$('[data-cat]', g).some(c => !c.hidden)));
-      if (count) count.textContent = `${n} proje listelendi`;
+      if (count) count.textContent = T.count(n);
     };
     filters.forEach(b => b.addEventListener('click', () => {
       filters.forEach(x => x.setAttribute('aria-pressed', 'false'));

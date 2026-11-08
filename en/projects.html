@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects – Berke Erenç</title>
+  <meta name="description" content="Backend, full-stack and AI projects by Berke Erenç: PhysioVision, Football Matchmaking, Hotel Website Builder and more.">
+  <meta name="theme-color" content="#1B2FD8">
+  <meta property="og:title" content="Projects – Berke Erenç">
+  <meta property="og:description" content="Backend, full-stack and AI projects by Berke Erenç: PhysioVision, Football Matchmaking, Hotel Website Builder and more.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://berkeerenc.github.io/en/projects.html">
+  <meta property="og:image" content="https://berkeerenc.github.io/og-image.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Projects – Berke Erenç">
+  <meta name="twitter:description" content="Backend, full-stack and AI projects by Berke Erenç: PhysioVision, Football Matchmaking, Hotel Website Builder and more.">
+  <meta name="twitter:image" content="https://berkeerenc.github.io/og-image.svg">
+  <link rel="canonical" href="https://berkeerenc.github.io/en/projects.html">
+  <link rel="alternate" hreflang="tr" href="https://berkeerenc.github.io/projects.html">
+  <link rel="alternate" hreflang="en" href="https://berkeerenc.github.io/en/projects.html">
+  <link rel="alternate" hreflang="x-default" href="https://berkeerenc.github.io/en/projects.html">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Martian+Mono:wdth,wght@75..112.5,100..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../shared.css?v=326383f9">
+  <style>
+    .page-title {
+      font-family: var(--mono); font-weight: 800;
+      font-size: clamp(3rem, 12vw, 9.5rem);
+      line-height: .92; letter-spacing: -0.045em;
+      font-variation-settings: "wdth" 112.5;
+      margin-bottom: 1.5rem;
+    }
+    .page-lede { font-size: clamp(1.0625rem, 1.8vw, 1.25rem); max-width: 52ch; margin-bottom: clamp(2rem, 5vw, 3rem); }
+
+    .filters {
+      display: flex; flex-wrap: wrap; gap: .5rem;
+      background: var(--bar); padding: .5rem;
+      box-shadow: 8px 8px 0 var(--shadow);
+      width: fit-content; max-width: 100%;
+    }
+    .filters button {
+      font: 600 .8125rem/1 var(--mono);
+      padding: .65rem .9rem;
+      background: transparent; color: var(--bar-ink);
+      border: 0; cursor: pointer;
+    }
+    .filters button:hover { background: rgba(10,15,61,.1); }
+    .filters button[aria-pressed="true"] { background: var(--bar-ink); color: var(--yellow); }
+    .filter-count { margin-top: 1rem; font: 500 .8125rem var(--mono); color: var(--muted); }
+
+    .group { margin-top: clamp(3.5rem, 8vw, 5.5rem); }
+    .group-title {
+      font: 700 clamp(1.25rem, 2.6vw, 1.75rem)/1.2 var(--mono);
+      letter-spacing: -0.02em;
+      margin-bottom: clamp(2rem, 4vw, 2.75rem);
+    }
+    .group-title .prompt { color: var(--cyan); font-weight: 500; }
+
+    .feature h2 {
+      font-family: var(--mono); font-weight: 800;
+      font-size: clamp(1.75rem, 4.5vw, 3.25rem);
+      line-height: 1.08; letter-spacing: -0.035em;
+      max-width: 22ch; margin: 1rem 0 .5rem;
+    }
+    .role { font: 500 .875rem var(--mono); color: var(--cyan); }
+    .psr {
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.75rem 2.5rem; margin: 2rem 0;
+    }
+    .psr dt { font: 700 .875rem var(--mono); color: var(--yellow); margin-bottom: .4rem; }
+    .psr dd { max-width: 52ch; }
+
+    .grid {
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(2.5rem, 4vw, 3.25rem) clamp(2rem, 4vw, 3rem);
+    }
+    .card { display: flex; flex-direction: column; gap: .85rem; transition: border-color .15s; }
+    .card:hover, .card:focus-within { border-color: var(--yellow); }
+    .card:hover .win-title, .card:focus-within .win-title { background: var(--yellow); color: var(--bar-ink); }
+    .card h3 { font: 800 clamp(1.25rem, 2.6vw, 1.75rem)/1.15 var(--mono); letter-spacing: -0.025em; }
+    .card .meta { font: 500 .8125rem var(--mono); color: var(--cyan); }
+    .card p { max-width: 60ch; }
+    .card-links, .feature-links { display: flex; gap: 1.5rem; margin-top: auto; padding-top: .5rem; font: 600 .875rem var(--mono); }
+    .card-links a, .feature-links a { color: var(--yellow); text-underline-offset: 4px; }
+    .card-links a:hover, .feature-links a:hover { color: var(--ink); }
+    .badge { display: inline-block; font: 600 .75rem/1 var(--mono); padding: .45rem .6rem; background: var(--cyan); color: var(--bar-ink); }
+
+    [hidden] { display: none !important; }
+
+    @media (max-width: 860px) {
+      .grid, .psr { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="menubar">
+    <a class="menubar-logo" href="index.html" aria-label="Berke Erenç, home">berke.sh</a>
+    <nav aria-label="Main menu">
+      <ul>
+        <li><a class="item" href="index.html" data-key="h"><span class="key">H</span>ome</a></li>
+        <li><a class="item" href="projects.html" data-key="p" aria-current="page"><span class="key">P</span>rojects</a></li>
+        <li><a class="item" href="index.html#about" data-key="a"><span class="key">A</span>bout</a></li>
+        <li><a class="item" href="../Berke-Erenc-CV.pdf" data-key="c" target="_blank" rel="noopener"><span class="key">C</span>V</a></li>
+        <li><a class="item" href="contact.html" data-key="t">Con<span class="key">t</span>act</a></li>
+        <li><a class="item" href="blog.html" data-key="w"><span class="key">W</span>riting</a></li>
+      </ul>
+    </nav>
+    <div class="lang-switch" role="group" aria-label="Language"><a href="../projects.html" hreflang="tr" lang="tr">TR</a><a href="projects.html" hreflang="en" lang="en" aria-current="true">EN</a></div>
+    <span class="menubar-clock" data-clock aria-hidden="true"></span>
+  </header>
+
+  <main id="main-content">
+    <div class="wrap">
+      <section aria-labelledby="page-title">
+        <p class="cmd"><span class="prompt">berke@izmir:~$</span> cd <span class="arg">projects/</span> &amp;&amp; ls</p>
+        <h1 class="page-title" id="page-title">Projects</h1>
+        <p class="page-lede">Backend, full-stack and AI-based work. Filter by category.</p>
+
+        <div class="filters" role="toolbar" aria-label="Filter projects">
+          <button type="button" data-filter="all" aria-pressed="true">All</button>
+          <button type="button" data-filter="backend" aria-pressed="false">Backend</button>
+          <button type="button" data-filter="fullstack" aria-pressed="false">Full-stack</button>
+          <button type="button" data-filter="ai" aria-pressed="false">AI</button>
+          <button type="button" data-filter="frontend" aria-pressed="false">Frontend</button>
+          <button type="button" data-filter="hobby" aria-pressed="false">Hobby</button>
+        </div>
+        <p class="filter-count" data-count aria-live="polite">9 projects listed</p>
+      </section>
+
+      <div class="group" data-group>
+        <h2 class="group-title"><span class="prompt">~$</span> cat featured.md</h2>
+        <article class="win feature" id="physiovision" data-cat="ai fullstack backend">
+          <span class="win-close" aria-hidden="true">[■]</span>
+          <span class="win-title">physiovision/README.md</span>
+          <span class="badge">Funded by TÜBİTAK 2209-A</span>
+          <h2>PhysioVision: an AI-based physiotherapy platform</h2>
+          <p class="role">Team lead and backend architect</p>
+          <dl class="psr">
+            <div><dt>Problem</dt><dd>Physiotherapy exercises needed to be assessed remotely and automatically. Therapists had to be physically present at every session.</dd></div>
+            <div><dt>Solution</dt><dd>A web and mobile platform with patient, therapist and admin roles that tracks body pose in real time with MediaPipe and classifies exercises with an LSTM model.</dd></div>
+            <div><dt>My role</dt><dd>API design, the user role system, data modeling, model integration and the Docker deployment process.</dd></div>
+            <div><dt>Result</dt><dd>A working system that assesses movement in real time across 13 exercises with about 82% LSTM classification accuracy. Delivered together with a React Native mobile app.</dd></div>
+          </dl>
+          <ul class="tags"><li>Flask</li><li>PostgreSQL</li><li>Redis</li><li>TensorFlow</li><li>MediaPipe</li><li>Docker</li><li>React</li><li>React Native</li></ul>
+          <div class="feature-links"><a href="https://github.com/berkeerenc/PhysioVision" target="_blank" rel="noopener">View on GitHub</a></div>
+        </article>
+      </div>
+
+      <div class="group" data-group>
+        <h2 class="group-title"><span class="prompt">~$</span> ls other/</h2>
+        <div class="grid">
+          <article class="win card" id="football" data-cat="fullstack backend">
+            <span class="win-close" aria-hidden="true">[■]</span>
+            <span class="win-title">football-matchmaking/</span>
+            <h3>Football Matchmaking &amp; Scouting</h3>
+            <p class="meta">Full-stack developer</p>
+            <p>An app for organizing football matches, with JWT authentication, real-time match pairing and notifications over SignalR, and a player rating system. Security-focused API design documented with Swagger.</p>
+            <ul class="tags"><li>.NET 8</li><li>React</li><li>PostgreSQL</li><li>SignalR</li><li>JWT</li><li>Swagger</li></ul>
+            <div class="card-links"><a href="https://github.com/berkeerenc/Football_Matchmaking_and_Scouting_Application" target="_blank" rel="noopener">View on GitHub</a></div>
+          </article>
+          <article class="win card" id="hotel-builder" data-cat="fullstack backend">
+            <span class="win-close" aria-hidden="true">[■]</span>
+            <span class="win-title">hotel-builder/</span>
+            <h3>Hotel Website Builder &amp; Cloner</h3>
+            <p class="meta">Full-stack developer</p>
+            <p>A platform that lets hotels create template-based websites and clone existing ones with Puppeteer. Secure file handling, structured error management and a customizable template system.</p>
+            <ul class="tags"><li>Node.js</li><li>Angular</li><li>MongoDB</li><li>Puppeteer</li><li>Cheerio</li></ul>
+            <div class="card-links"><a href="https://github.com/berkeerenc/WebsiteBuilder" target="_blank" rel="noopener">View on GitHub</a></div>
+          </article>
+          <article class="win card" id="ai-chatbot" data-cat="ai backend">
+            <span class="win-close" aria-hidden="true">[■]</span>
+            <span class="win-title">hotel-chatbot/</span>
+            <h3>AI-Powered Hotel Chatbot</h3>
+            <p class="meta">Backend developer</p>
+            <p>A multilingual hotel chatbot that integrates LLaMA, Mistral and GPT with dynamic model switching. Chat history management and session-based context.</p>
+            <ul class="tags"><li>Node.js</li><li>LLaMA</li><li>Mistral</li><li>GPT API</li></ul>
+            <div class="card-links"><a href="https://github.com/berkeerenc/chatbot" target="_blank" rel="noopener">View on GitHub</a></div>
+          </article>
+          <article class="win card" id="serverless-monitoring" data-cat="backend">
+            <span class="win-close" aria-hidden="true">[■]</span>
+            <span class="win-title">serverless-monitor/</span>
+            <h3>Azure Serverless Service Monitor</h3>
+            <p class="meta">Backend developer</p>
+            <p>A service health monitor running on Azure Functions. It checks dependent services at regular intervals and sends a notification when it detects an anomaly.</p>
+            <ul class="tags"><li>.NET</li><li>Azure Functions</li><li>Serverless</li><li>C#</li></ul>
+            <div class="card-links"><a href="https://github.com/berkeerenc/ServerlessMonitoring" target="_blank" rel="noopener">View on GitHub</a></div>
+          </article>
+          <article class="win card" data-cat="backend">
+            <span class="win-close" aria-hidden="true">[■]</span>
+            <span class="win-title">ecommerce-api/</span>
+            <h3>E-Commerce Backend API</h3>
+            <p class="meta">Altınyıldız Classics, 2026</p>
+            <p>RESTful API development with .NET and PostgreSQL for a retail e-commerce system. Product catalog, order management and stock synchronization, plus internal tools that speed up operations.</p>
+            <ul class="tags"><li>.NET</li><li>PostgreSQL</li><li>RESTful API</li></ul>
+          </article>
+          <article class="win card" data-cat="frontend">
+            <span class="win-close" aria-hidden="true">[■]</span>
+            <span class="win-title">angular-ui-kit/</span>
+            <h3>Angular UI component library</h3>
+            <p class="meta">RevloAi, 2025–2026</p>
+            <p>Reusable Angular components, reactive state management with RxJS and UI/UX improvements. An architectural restructuring that lowered the cost of maintaining the codebase.</p>
+            <ul class="tags"><li>Angular</li><li>TypeScript</li><li>RxJS</li></ul>
+          </article>
+          <article class="win card" data-cat="backend fullstack">
+            <span class="win-close" aria-hidden="true">[■]</span>
+            <span class="win-title">nodejs-api/</span>
+            <h3>Node.js REST API development</h3>
+            <p class="meta">Talya Bilişim, 2025</p>
+            <p>Node.js endpoint development, testing and Angular frontend work in a professional team. Relational data, code reviews and agile sprints.</p>
+            <ul class="tags"><li>Node.js</li><li>Angular</li><li>SQL</li></ul>
+          </article>
+        </div>
+      </div>
+
+      <div class="group" data-group>
+        <h2 class="group-title"><span class="prompt">~$</span> ls hobby/</h2>
+        <div class="grid">
+          <article class="win card" id="rts-game" data-cat="hobby">
+            <span class="win-close" aria-hidden="true">[■]</span>
+            <span class="win-title">rts-game/</span>
+            <h3>RTS game in the style of Age of Empires</h3>
+            <p class="meta">Course project, CSE-377 Game Programming</p>
+            <p>A multiplayer real-time strategy game built with Unity and Photon PUN2. NavMesh-based unit movement, a combat system, a Photon lobby and a network manager.</p>
+            <ul class="tags"><li>Unity</li><li>C#</li><li>Photon PUN2</li><li>NavMesh</li></ul>
+            <div class="card-links"><a href="https://github.com/berkeerenc/RTS_Game_Final" target="_blank" rel="noopener">View on GitHub</a></div>
+          </article>
+        </div>
+      </div>
+
+      <footer class="site-footer">
+        <span>© <span data-year>2026</span> Berke Erenç</span>
+        <a href="mailto:berkeerenc@outlook.com">berkeerenc@outlook.com</a>
+      </footer>
+    </div>
+  </main>
+
+  <footer class="statusbar" aria-label="Shortcuts">
+    <button type="button" data-open-palette><kbd>/</kbd>Command</button>
+    <button type="button" class="hide-sm" onclick="location.href='projects.html'"><kbd>P</kbd>Projects</button>
+    <button type="button" class="hide-sm" onclick="window.open('../Berke-Erenc-CV.pdf','_blank','noopener')"><kbd>C</kbd>CV</button>
+    <button type="button" class="hide-sm" onclick="location.href='contact.html'"><kbd>T</kbd>Contact</button>
+    <span class="status-right"><span class="status-dot" aria-hidden="true"></span><span class="hide-sm">Open to junior backend roles</span><span class="show-sm">Open to work</span></span>
+  </footer>
+
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Command line" aria-hidden="true">
+    <div class="win">
+      <span class="win-close" aria-hidden="true">[■]</span>
+      <span class="win-title">berke.sh</span>
+      <div class="palette-log" aria-live="polite"></div>
+      <form class="palette-form" autocomplete="off">
+        <label for="palette-input">$</label>
+        <input id="palette-input" type="text" spellcheck="false" placeholder="type help, press Enter">
+      </form>
+      <p class="palette-hint">Press Esc to close. Letter shortcuts work on the page too: P, A, C, T.</p>
+    </div>
+  </div>
+
+  <script src="../shared.js?v=90786019" defer></script>
+</body>
+</html>

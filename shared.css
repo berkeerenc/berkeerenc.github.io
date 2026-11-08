@@ -308,8 +308,12 @@ html.booting body::before {
   display: inline-block; width: min(22ch, 40vw); height: .8em; vertical-align: -0.05em;
   border: 2px solid var(--muted); margin-left: .5rem; position: relative;
 }
-.boot-bar i { position: absolute; inset: 1px; right: auto; width: 0; background: var(--yellow); transition: width .55s steps(14); }
-.boot-skip { margin-top: auto; align-self: flex-end; font-size: .75rem; color: rgba(200,207,255,.6); }
+.boot-bar i { position: absolute; inset: 1px; right: auto; width: 0; background: var(--yellow); transition: width 1.3s steps(20); }
+.boot-skip {
+  margin-top: auto; align-self: flex-end;
+  font-size: .8125rem; color: var(--bar-ink); background: var(--bar);
+  padding: .45rem .7rem; animation: blink 1.6s steps(1) infinite;
+}
 /* kapanış: tüplü ekran gibi tek çizgiye söner */
 .boot.off { animation: crt-off .42s cubic-bezier(.7, 0, .3, 1) forwards; }
 @keyframes crt-off {

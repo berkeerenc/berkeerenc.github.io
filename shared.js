@@ -190,19 +190,25 @@ remote / hybrid pozisyonlara açık.`,
       const lines = EN ? [
         ['CPU    Akdeniz University, B.Sc. Computer Engineering', 'OK'],
         ['MEM    4 internships, 4 teams', 'OK'],
-        ['GPU    PhysioVision: MediaPipe + LSTM, ~82% accuracy', 'OK'],
+        ['DISK   PhysioVision: MediaPipe + LSTM, ~82% accuracy', 'OK'],
         ['LOAD   .NET  Node.js  PostgreSQL  React  Angular', 'bar'],
-        ['MOUNT  /projects', '9 found'],
+        ['DB     PostgreSQL  MongoDB  Redis', 'OK'],
+        ['SEC    JWT auth, Swagger-documented APIs', 'OK'],
+        ['LANG   Turkish (native), English (C1)', 'OK'],
         ['NET    İzmir, Türkiye  remote / hybrid', 'OK'],
-        ['>      starting berke.sh', '']
+        ['MOUNT  /projects', '9 found'],
+        ['>      starting berke.sh', 'dots']
       ] : [
         ['CPU    Akdeniz Üniversitesi, Bilgisayar Mühendisliği', 'OK'],
         ['MEM    4 staj, 4 ekip', 'OK'],
-        ['GPU    PhysioVision: MediaPipe + LSTM, ~%82 doğruluk', 'OK'],
+        ['DISK   PhysioVision: MediaPipe + LSTM, ~%82 doğruluk', 'OK'],
         ['LOAD   .NET  Node.js  PostgreSQL  React  Angular', 'bar'],
-        ['MOUNT  /projeler', '9 bulundu'],
+        ['DB     PostgreSQL  MongoDB  Redis', 'OK'],
+        ['SEC    JWT kimlik doğrulama, Swagger dokümanlı API', 'OK'],
+        ['LANG   Türkçe (ana dil), İngilizce (C1)', 'OK'],
         ['NET    İzmir, Türkiye  remote / hybrid', 'OK'],
-        ['>      berke.sh başlatılıyor', '']
+        ['MOUNT  /projeler', '9 bulundu'],
+        ['>      berke.sh başlatılıyor', 'dots']
       ];
       const el = document.createElement('div');
       el.className = 'boot';
@@ -230,7 +236,7 @@ remote / hybrid pozisyonlara açık.`,
       window.addEventListener('keydown', finish);
       ['pointerdown', 'touchstart'].forEach(t => window.addEventListener(t, finish, { passive: true }));
 
-      let t = 120;
+      let t = 350;
       lines.forEach(([text, status]) => {
         timers.push(setTimeout(() => {
           const li = document.createElement('li');
@@ -238,6 +244,16 @@ remote / hybrid pozisyonlara açık.`,
             li.innerHTML = `${text}<span class="boot-bar"><i></i></span>`;
             list.appendChild(li);
             requestAnimationFrame(() => requestAnimationFrame(() => { li.querySelector('i').style.width = 'calc(100% - 2px)'; }));
+          } else if (status === 'dots') {
+            li.textContent = text;
+            const d = document.createElement('span');
+            d.className = 'hl';
+            li.appendChild(d);
+            list.appendChild(li);
+            let n = 0;
+            const tick = () => { d.textContent = ' ' + '.'.repeat(n = (n % 3) + 1); timers.push(setTimeout(tick, 280)); };
+            tick();
+            return;
           } else {
             li.textContent = text + (status ? '  ' : '');
             if (status) {
@@ -249,9 +265,9 @@ remote / hybrid pozisyonlara açık.`,
             list.appendChild(li);
           }
         }, t));
-        t += status === 'bar' ? 620 : 190;
+        t += status === 'bar' ? 1500 : 520;
       });
-      timers.push(setTimeout(finish, t + 280));
+      timers.push(setTimeout(finish, t + 900));
     });
   }
 

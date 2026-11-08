@@ -42,7 +42,7 @@
 junior backend developer, İzmir, Türkiye
 writes services with .NET, Node.js and PostgreSQL;
 turns them into end-to-end products with React and Angular.
-open to remote / hybrid roles.`,
+open to software developer roles, remote / hybrid.`,
     ls: 'index.html   projects.html   contact.html   blog.html   ../Berke-Erenc-CV.pdf',
     opening: u => `opening: ${u}`,
     mail: 'opening your email client…',
@@ -73,7 +73,7 @@ open to remote / hybrid roles.`,
 junior backend developer, İzmir
 .NET, Node.js ve PostgreSQL ile servis yazıyor;
 React ve Angular ile uçtan uca ürüne çeviriyor.
-remote / hybrid pozisyonlara açık.`,
+yazılım geliştirici pozisyonlarına açık, remote / hybrid.`,
     ls: 'index.html   projects.html   contact.html   blog.html   Berke-Erenc-CV.pdf',
     opening: u => `açılıyor: ${u}`,
     mail: 'e-posta istemcisi açılıyor…',
